@@ -1,0 +1,1337 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section>
+        <h1>ux camp</h1>
+        <h1>web frontend dev</h1>
+        <p>Part 1 of 4: The Basics</p>
+    </section>
+    <section>
+        <h2>Overview</h2>
+<div>
+    <br>
+</div>
+<div>
+    <br>
+</div>
+<blockquote>Do you know HTML5?</blockquote>
+<p>
+</p>
+        <p>
+</p>
+        <ul>
+    <li>HTML5<br>
+    </li>
+    <li>CSS3<br>
+    </li>
+    <li>JavaScript<br>
+    </li>
+    <li>and much more*</li>
+</ul>
+<div style="text-align: left;">
+    <br>
+</div>
+<div style="text-align: left;">
+    <font color="#aab">*&nbsp;AJAX, JSON, responsive web design, performance optimization, animation,&nbsp;accessibility, browsers, etc.</font>
+    </div>
+
+
+</section>
+    <section>
+        <h2>
+            <span style="background-color: rgb(0,51,102);">html5</span>
+        </h2>
+    </section>
+    <section>
+        <h2>Title</h2>
+        <div>
+            <br>
+        </div>
+        <div>html5 vs xhtml2</div>
+        <div>
+            <br>
+        </div>
+        <div>"the living standard"</div>
+    </section>
+    <section>
+        <h2>HTML5 - new</h2>
+<div>
+    <br>
+</div>
+<div>
+    <div>Semantic elements</div>
+    <div>
+        <br>
+    </div>
+    <div>Data storage</div>
+    <div>
+        <br>
+    </div>
+    <div>Video support*</div>
+    <div>
+        <br>
+    </div>
+    <div>Not XHTML<br>
+    </div>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <div style="text-align: left;">
+        <font color="#aab">* No&nbsp;</font>
+        <span style="color: rgb(170,170,187);line-height: 1.2em;letter-spacing: -0.02em;">format</span>
+        <span style="color: rgb(170,170,187);line-height: 1.2em;letter-spacing: -0.02em;">&nbsp;</span>
+        <span style="color: rgb(170,170,187);line-height: 1.2em;letter-spacing: -0.02em;">defined though</span>
+    </div>
+</div>
+</section>
+    <section>
+        <h2>html - semantics</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <div>Imagine the site through a screen reader</div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <br>
+            </div>
+            <pre>Elements:<br>&lt;article&gt; for what you would syndicate<br>&lt;section&gt; for things that belong together<br>&lt;div&gt; if they don’t<br>&lt;header&gt; and &lt;footer&gt; where it makes sense</pre>
+        </div>
+    </section>
+    <section>
+        <section>
+            <h2>html5 - data</h2>
+<div>
+
+
+    <div>
+            <br>
+        </div>
+        <div>Datasets &amp; Data-attributes</div>
+        <div>
+            <br>
+        </div>
+        <div>Web Storage</div>
+    <div>
+        <br>
+    </div>
+    <div>AppCache</div>
+</div>
+<div>
+    <br>
+</div>
+<div>Indexed DB</div>
+<div>
+    <br>
+</div>
+<div>Data-URI</div>
+
+
+
+</section>
+<section>
+    <h2>Datasets &amp; data-attributes</h2>
+    <div>Custom data to elements<br>
+    </div>
+    <div>
+        <br>
+    </div>
+<div>
+<span style="line-height: 1.2em;letter-spacing: -0.02em;">HTML</span>
+<br>
+</div>
+<div>
+    <pre>
+    <code>&lt;div data-example="hello" /&gt;</code>
+</pre>
+</div>
+
+<div>
+<span style="line-height: 1.2em;letter-spacing: -0.02em;">JS (via dataset)</span>
+<span style="line-height: 1.2em;letter-spacing: -0.02em;">&nbsp;</span>
+<br>
+</div>
+<div>
+<pre>
+<code>var data = element.dataset.example; // read
+
+element.dataset.example = 'goodbye'; // write</code>
+</pre>
+</div>
+<div>
+<span style="line-height: 1.2em;letter-spacing: -0.02em;">JQuery</span>
+<span style="line-height: 1.2em;letter-spacing: -0.02em;">&nbsp;</span>
+<br>
+</div>
+<div>
+<pre>
+<code>var data = $('div').data('example'); // read
+
+$('div').data('example', 'goodbye'); // write alt 1
+$.data('div', 'example', 'goodbye'); // write alt 2
+</code>
+</pre>
+</div>
+<div>
+<a href="http://caniuse.com/#feat=dataset" style="line-height: 1.2em;letter-spacing: -0.02em;">caniuse</a>
+<br>
+</div>
+
+
+
+
+
+</section>
+<section>
+    <h2>Web Storage</h2>
+<div>Store data locally like cookies,</div>
+<div>but for larger amounts of data<br>
+</div>
+<div>
+<span style="text-align: left;letter-spacing: -0.02em;">
+    <br>
+</span>
+</div>
+<div>
+    <span style="text-align: left;letter-spacing: -0.02em;">Beware of sync-issues with back-end</span>
+</div>
+<div style="text-align: center;">
+    <span style="text-align: left;line-height: 1.2em;letter-spacing: -0.02em;">Only stores strings &nbsp; &nbsp;&nbsp;</span>
+    <br>
+</div>
+<div>
+</div>
+<div>
+<br>
+</div>
+
+<div>
+    <pre>
+    <code>if( typeof Storage !== 'undefined' )
+  // Yes! localStorage and sessionStorage support!</code>
+</pre>
+</div>
+
+    <pre>
+<code>window.localStorage.example = "hello"; // write
+
+var world = window.localStorage.example; // read
+</code>
+</pre>
+
+<pre>
+<code>window.sessionStorage.example = "hello"; // read
+
+var world = window.sessionStorage.example; // write
+</code>
+</pre>
+
+
+<div>
+    <a href="http://caniuse.com/#feat=namevalue-storage">
+caniuse
+</a>
+</div>
+
+
+</section>
+<section>
+    <h2>app cache</h2>
+<div>
+    <br>
+</div>
+<div>Offline web applications</div>
+<pre>
+<code>&lt;!DOCTYPE html&gt;
+&lt;html manifest="/cache.manifest"&gt;
+&lt;body&gt;
+...
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+<div>
+    <br>
+</div>
+<div>
+<pre>
+<code>CACHE MANIFEST
+/clock.css
+/clock.js
+/clock-face.jpg
+</code>
+</pre>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <a href="http://caniuse.com/#feat=offline-apps">caniuse</a>
+</div>
+
+</section>
+<section>
+    <h2>Indexeddb</h2>
+<div>Indexed database</div>
+    <div>(formerly WebSimpleDB API)<br>
+</div>
+<div>
+    <br>
+</div>
+<div>
+<pre>
+    <code>var kids = [ {name: "Anna"}, {name: "Betty"}, {name: "Christine"} ];
+ 
+var request = window.indexedDB.open("CandyDB", "My candy store");
+<br>
+</code>
+<code>request.onsuccess = function(event) {
+  var objectStore = event.result.objectStore("kids");
+  for (var index = 0; index &lt; kids.length; index++) {
+    var kid = kids[index];
+    objectStore.add(kid).onsuccess = function(event) {
+      document.getElementById("display").textContent =
+        "Saved record for " + kid.name + " with id " + event.result;
+    };
+  }
+};
+</code>
+</pre>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <a href="http://caniuse.com/#feat=indexeddb">caniuse</a>
+</div>
+</section>
+<section>
+    <h2>Data-uri</h2>
+<div>
+    <br>
+</div>
+<div>
+    Embed images as string
+</div>
+<div>
+    <br>
+</div>
+<div>
+    
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <a href="http://caniuse.com/#feat=datauri">caniuse</a>
+</div>
+
+</section>
+</section>
+<section>
+    <h2>HTML languages</h2>
+<div>HAML</div>
+<div>
+    <pre>
+    <code>!!!
+%html
+  %head
+    %title BoBlog
+    %link{"rel" =&gt; "stylesheet", "href" =&gt; "main.css"}</code>
+    <code>  %body</code>
+</pre>
+</div>
+<div>
+<pre>
+<code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;BoBlog&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/stylesheets/main.css" /&gt;
+  &lt;/head&gt;</code>
+<code>  &lt;body&gt;&lt;/body&gt;</code>
+<code>&lt;/html&gt;</code>
+</pre>
+</div>
+</section>
+<section>
+    <h2>
+        <font color="#00ff00">css3</font>
+    </h2>
+</section>
+<section>
+    <section>
+        <h2>CSS3</h2>
+        <div>
+            <div>Media queries</div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span style="line-height: 1.2em;letter-spacing: -0.02em;">Attributes</span>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <span style="line-height: 1.2em;letter-spacing: -0.02em;">Forget &lt;IE9</span>
+                <br>
+            </div>
+            <div>
+                <span style="line-height: 1.2em;letter-spacing: -0.02em;">
+                    <br>
+                </span>
+            </div>
+            <div>Styling</div>
+            <div>
+                <div style="">
+                    <br>
+                </div>
+            </div>
+            <div>
+                <br>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Media Queries</h2>
+        <div>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+    </section>
+    <section>
+        <h2>CSS Attributes</h2>
+        <div>
+            <div style="">
+                <span style="letter-spacing: -0.02em;">: selectors</span>
+            </div>
+            <div style="">’content’ attribute</div>
+        </div>
+    </section>
+    <section>
+        <h2>CSS Styling</h2>
+<br>
+<div>
+    <span style="border: 2.0px solid;padding: 0.5em;">Rounded corners</span>
+</div>
+<br>
+<div style="">
+    <span style="">Gradients</span>
+</div>
+<br>
+<div>
+    <span style="box-shadow: 10.0px 10.0px 5.0px rgb(136,136,136);border: 2.0px solid;padding: 0.5em;">Shadows</span>
+</div>
+<br>
+<div style="">
+2D Transforms
+</div>
+<br>
+<div style="">
+3D Transforms
+</div>
+<br>
+#transition-demo:hover { background: #00e; }
+<div style="">
+Transitions</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>CSS Architecture</h2>
+<div>
+SMACSS</div>
+            <div>OOCSS</div>
+            <div>BEM
+
+</div>
+            <div>
+                <br>
+            </div>
+            <div>Simple structure</div>
+</section>
+            <section>
+                <h2>SMACSS</h2>
+<div>
+    <a href="http://smacss.com">Scalable and Modular Architecture for CSS</a>
+                <br>
+</div>
+<div>
+    <br>
+</div>
+<div>
+<ol>
+    <li>
+        <span style="line-height: 1.2em;text-align: center;letter-spacing: -0.02em;">Base</span>
+</li>
+    <li>
+        <span style="line-height: 1.2em;text-align: center;letter-spacing: -0.02em;">Layout</span>
+</li>
+    <li>
+        <span style="line-height: 1.2em;text-align: center;letter-spacing: -0.02em;">Module</span>&nbsp; &nbsp; &nbsp;</li>
+    <li>
+        <span style="line-height: 1.2em;text-align: center;letter-spacing: -0.02em;">State</span>
+</li>
+    <li>
+        <span style="line-height: 1.2em;text-align: center;letter-spacing: -0.02em;">Theme</span>
+<br>
+    </li>
+</ol>
+<div>
+    <br>
+</div>
+<pre>h1</pre>
+<pre>.l-inline</pre>
+<pre>.callout</pre>
+<pre>.is-hidden</pre>
+</div>
+
+
+</section>
+                <section>
+                    <h2>OOCSS</h2>
+                    <div>
+                        <a href="http://oocss.org/">Object-Oriented CSS</a>
+                    </div>
+<div>
+    <br>
+</div>
+<div>
+    <a href="http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/">The Media object</a>
+</div>
+<div>
+    <img src="http://i.imgur.com/OjRqjgo.png">
+    <br>
+</div>
+<pre>
+                    <code>/* ====== media ====== */
+.media {margin:10px;}
+.media, .bd {overflow:hidden; _overflow:visible; zoom:1;}
+.media .img {float:left; margin-right: 10px;}
+.media .img img{display:block;}
+.media .imgExt{float:right; margin-left: 10px;}
+</code>
+                </pre>
+</section>
+                <section>
+                    <h2>
+                        <a href="http://bem.info">BEM</a>
+                    </h2>
+<div>
+                    <br>
+                </div>
+                <div>Blocks and Elements</div>
+<div>
+    <img src="http://i.imgur.com/YygZGus.png">
+    <br>
+</div>
+<div>
+                <br>
+            </div>
+<div>Modifier</div>
+<div>
+    <img src="http://i.imgur.com/FsTZW64.png">
+    <br>
+</div>
+
+
+</section>
+            <section>
+                <h2>Simple structure</h2>
+                <div>Naming conventions</div>
+                <div>
+                    <br>
+                </div>
+                <div>
+                    <div>i-prefer-this, ratherThanThis</div>
+                    <div>States are prefixed with ’is-’ (.is-hidden)</div>
+                    <div>Components are prefixed with ’comp-’ or ’mod-’</div>
+                </div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>CSS Selectors</h2>
+                <div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>Basics</div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>Specificity</div>
+                </div>
+                <div>
+                    <br>
+                </div>
+                <div>Pseudo-elements</div>
+            </section>
+            <section>
+                <h2>CSS Basics</h2>
+                <div>
+                    <br>
+                </div>
+                <div>parent &gt; child</div>
+                <div>
+                    <br>
+                </div>
+                <div>[attribute]</div>
+                <div>[attribute=value]</div>
+                <div>
+                    <br>
+                </div>
+            </section>
+            <section>
+                <h2>CSS Specificity</h2>
+<div>
+    <br>
+</div>
+<div>Right to left</div>
+<div>
+    <br>
+</div>
+<div>
+    <div>ID -&gt; element -&gt; class</div>
+    <div>inline style -&gt; external</div>
+    <div>
+        <br>
+    </div>
+    <div>Don’t be overly specific</div>
+    <div>Prefer .intro over p.intro</div>
+    <div>Prefer .main-intro over .main .intro</div>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <div>Use classes, avoid elements, don’t use ID’s</div>
+    <div>
+        <br>
+    </div>
+    <div>!important probably means you’re doing it wrong</div>
+</div>
+            </section>
+            <section>
+                <h2>CSS3 Pseudo-elements</h2>
+                <div>
+                    <br>
+                </div>
+                <div>
+                    <div>Classic</div>
+                    <div>a:visited</div>
+                    <div>
+                        <br>
+                    </div>
+                    <div>New</div>
+                    <div>:first-letter</div>
+                    <div>:first-child</div>
+                    <div>:before / :after</div>
+                    <div>:lang</div>
+                </div>
+                <div>:not()</div>
+            </section>
+        </section>
+        <section>
+            <section>
+                <h2>CSS Languages</h2>
+<div>LESS/SASS</div>
+<div>
+    <pre>
+                <code>@color: #888;
+
+#header {
+  a {
+    color: @color;
+
+    &amp;:hover {
+      color: lighten(@color, 10%);
+    }
+  }
+}
+</code>
+            </pre>
+</div>
+<div>Compiled</div>
+<div>
+<pre>
+            <code>#header a {
+  color: #888;
+}
+#header a:hover {
+  color: #a2a2a2;
+}</code>
+        </pre>
+</div>
+<div>
+Minified
+</div>
+<div>
+<pre>
+        <code>#header a{color: #888}#header a:hover {color: #a2a2a2}</code>
+    </pre>
+</div>
+</section>
+    <section>
+        <h2>LESS</h2>
+        <div>
+            <br>
+        </div>
+        <div>Variables</div>
+        <div>
+            <br>
+        </div>
+        <div>Mixins</div>
+        <div>
+            <br>
+        </div>
+        <div>Nested Rules</div>
+        <div>
+            <br>
+        </div>
+        <div>Operators</div>
+    </section>
+    <section>
+        <h2>SASS</h2>
+        <div>
+            <br>
+        </div>
+        <div>as LESS +</div>
+        <div>
+            <br>
+        </div>
+        <div>Nested Properties</div>
+        <div>Data Types</div>
+        <div>Flags</div>
+        <div>Debug printing</div>
+        <div>Control Directives</div>
+        <div>Functions</div>
+        <div>
+            <br>
+        </div>
+        <div>(Compass library)</div>
+    </section>
+</section>
+<section>
+    <h2>
+        <span style="background-color: rgb(0,0,153);">JavaScript</span>
+    </h2>
+</section>
+<section>
+    <section>
+        <h2>JavaScript</h2>
+        <div>
+            <br>
+        </div>
+        <div>Not just "magic snippets"</div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <i>Quirky</i>
+        </div>
+        <div>
+            <i>
+            <br>
+        </i>
+    </div>
+    <div>Lots of free libraries</div>
+</section>
+<section>
+    <h2>JavaScript libraries</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <div>jQuery: DOM manipulation and more</div>
+        <div>Validate: form validation</div>
+        <div>UI: lot’s of UI components</div>
+        <div>Mobile: look and act as native apps for mobile</div>
+        <div>Three.js: 3D rendering</div>
+        <div>Store.js: localStorage wrapper, with fallback</div>
+        <div>Modernizr: feature detection</div>
+        <div>Knockout.js: MVC framework</div>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+</section>
+<section>
+    <section>
+        <h2>JavaScript Languages</h2>
+<div>CoffeScript</div>
+<div>
+    <pre>
+        <code>square = (x) -&gt; x * x    </code>
+    </pre>
+</div>
+<div>
+    <pre>
+    <code>square = function(x) {
+  return x * x;
+};    </code>
+</pre>
+</div>
+<div>TypeScript</div>
+<div>
+    <pre>
+<code>function square(x) {
+    return x * x;
+}    </code>
+</pre>
+</div>
+<div>
+    <pre>
+<code>function square(x) {
+    return x * x;
+}<br>
+</code>
+</pre>
+</div>
+<div>
+Think you need to learn this? Learn JS.</div>
+</section>
+<section>
+    <h2>CoffeeScript</h2>
+<div>
+<pre>
+    <code>class Greeter
+  constructor: (@message) -&gt;
+
+  greet: () -&gt;
+    "Hello, " + this.greeting;
+
+greeter = new Greeter "world"<br>
+</code>
+</pre>
+
+<pre>
+<code>var Greeter, greeter;
+
+Greeter = (function() {
+  function Greeter(message) {
+    this.message = message;
+  }
+  Greeter.prototype.greet = function() {
+    return "Hello, " + this.greeting;
+  };
+
+  return Greeter;
+})();
+greeter = new Greeter("world");
+</code>
+</pre>
+</div>
+
+</section>
+<section>
+    <h2>TypeScript</h2>
+<div>
+<pre>
+    <code>class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    greet() {
+        return "Hello, " + this.greeting;
+    }
+}</code>
+    <code>var greeter = new Greeter("world");
+</code>
+</pre>
+
+<pre>
+<code>var Greeter = (function () {
+    function Greeter(message) {
+        this.greeting = message;
+    }
+    Greeter.prototype.greet = function () {
+        return "Hello, " + this.greeting;
+    };
+    return Greeter;
+})();
+var greeter = new Greeter("world");
+</code>
+</pre>
+</div>
+
+
+
+
+</section>
+</section>
+<section>
+    <h2>JavaScript Structure</h2>
+    <div>
+        <br>
+    </div>
+    <div>http://contribute.jquery.org/style-guide/js/<br>
+    </div>
+</section>
+<section>
+    <h2>
+        <span style="background-color: rgb(0,0,153);">"Do you know HTML5?"</span>
+    </h2>
+</section>
+<section>
+    <h2>
+        <br>
+    </h2>
+    <div>
+        <div>HTML is markup</div>
+        <div>
+            <br>
+        </div>
+        <div>CSS is styling</div>
+        <div>
+            <br>
+        </div>
+        <div>JavaScript is logic</div>
+    </div>
+</section>
+<section>
+    <h2>Tips</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <div>Don’t do inline styling or JavaScript</div>
+        <div>Find reusable components, break them up in a separate file</div>
+        <div>js/components/article-selection.js</div>
+        <div>less/components/article-selection.less</div>
+        <div>html/components/article-selection.html (kinda)</div>
+        <div>Use or learn from frameworks</div>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+<section>
+    <h2>Frameworks</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <a href="http://foundation.zurb.com/">Zurb Foundation</a>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+<section>
+    <h2>Responsive Web Design</h2>
+    <div>
+        <br>
+    </div>
+    <div>
+        <div>One HTML, multiple sizes</div>
+        <div>
+            <br>
+        </div>
+        <div>Mobile-first vs Desktop-first</div>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>Images (x2)</div>
+    <div>
+        <br>
+    </div>
+    <div>3-5 Breakpoints</div>
+</section>
+<section>
+    <section>
+        <h2>Performance</h2>
+<div>
+        <br>
+    </div>
+    <div>Perceived performance
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <div style="">Optimize caching</div>
+    <div style="">
+        <br>
+    </div>
+    <div style="">Minimize round-trip times</div>
+    <div style="">
+        <br>
+    </div>
+    <div style="">Minimize request overhead</div>
+    <div style="">
+        <br>
+    </div>
+    <div style="">Minimize payload size</div>
+    <div style="">
+        <br>
+    </div>
+    <div style="">Optimize browser rendering</div>
+</div>
+</section>
+    <section>
+        <h2>Performance tools</h2>
+<div>
+    <br>
+</div>
+<div>
+    <a href="https://developers.google.com/speed/pagespeed/">Google Page Speed</a>
+</div>
+<div>
+    <br>
+</div>
+<div>
+    <a href="http://developer.yahoo.com/yslow/">Yahoo! YSlow</a>
+</div>
+<div>
+    <a href="http://www.smushit.com/ysmush.it/">Smush.it</a>
+</div>
+        <div>
+            <br>
+        </div>
+        <div>FireBug network console</div>
+</section>
+    </section>
+    <section>
+        <section>
+            <h2>
+    <span style="background-color: rgb(0,0,153);">Resources</span>
+</h2>
+<div>
+    HTML5 doctor
+</div>
+            <div>Smashing Magazine</div>
+            <div>A list apart</div>
+            <div>Codepen.io</div>
+            <div>Caniuse</div>
+            <div>html5 demos</div>
+            <div>css-tricks</div>
+            <div>http://diveintohtml5.info<br>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div>
+                <br>
+            </div>
+</section>
+            <section>
+                <h3>50 performance tricks</h3>
+                <h3>to make your HTML5 apps and sites faster</h3>
+
+<iframe src="http://channel9.msdn.com/Events/Build/2012/3-132/player?w=960&amp;h=540" style="height: 540.0px;width: 960.0px;">&amp;amp;amp;nbsp;</iframe>
+</section>
+            </section>
+            <section>
+                <h2>the End?</h2>
+                <div>
+                    <br>
+                </div>
+                <div>questions?</div>
+            </section>
+        </div>
+
+				<section id="transitions">
+					<h2>Transition Styles</h2>
+					<p>
+						You can select from different transitions, like: <br>
+						<a href="?transition=cube#/transitions">Cube</a> -
+						<a href="?transition=page#/transitions">Page</a> -
+						<a href="?transition=concave#/transitions">Concave</a> -
+						<a href="?transition=zoom#/transitions">Zoom</a> -
+						<a href="?transition=linear#/transitions">Linear</a> -
+						<a href="?transition=fade#/transitions">Fade</a> -
+						<a href="?transition=none#/transitions">None</a> -
+						<a href="?#/transitions">Default</a>
+					</p>
+				</section>
+
+				<section id="themes">
+					<h2>Themes</h2>
+					<p>
+						Reveal.js comes with a few themes built in: <br>
+						<a href="?theme=sky#/themes">Sky</a> -
+						<a href="?theme=beige#/themes">Beige</a> -
+						<a href="?theme=simple#/themes">Simple</a> -
+						<a href="?theme=serif#/themes">Serif</a> -
+						<a href="?theme=night#/themes">Night</a> -
+						<a href="?#/themes">Default</a>
+					</p>
+					<p>
+						<small>
+							* Theme demos are loaded after the presentation which leads to flicker. In production you should load your theme in the <code>&lt;head&gt;</code> using a <code>&lt;link&gt;</code>.
+						</small>
+					</p>
+				</section>
+
+				<section>
+					<section data-state="alert">
+						<h2>Global State</h2>
+						<p>
+							Set <code>data-state="something"</code> on a slide and <code>"something"</code>
+							will be added as a class to the document element when the slide is open. This lets you
+							apply broader style changes, like switching the background.
+						</p>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section data-state="blackout">
+						<h2>"blackout"</h2>
+						<a href="#" class="image navigate-down">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Down arrow">
+						</a>
+					</section>
+					<section data-state="soothe">
+						<h2>"soothe"</h2>
+						<a href="#" class="image navigate-next">
+							<img width="178" height="238" src="https://s3.amazonaws.com/hakim-static/reveal-js/arrow.png" alt="Up arrow" style="-webkit-transform: rotate(-90deg);">
+						</a>
+					</section>
+				</section>
+
+				<section data-state="customevent">
+					<h2>Custom Events</h2>
+					<p>
+						Additionally custom events can be triggered on a per slide basis by binding to the <code>data-state</code> name.
+					</p>
+					<pre><code contenteditable style="font-size: 18px; margin-top: 20px;">Reveal.addEventListener( 'customevent', function() {
+	console.log( '"customevent" has fired' );
+} );
+					</code></pre>
+				</section>
+
+				<section>
+					<h2>Clever Quotes</h2>
+					<p>
+						These guys come in two forms, inline: <q cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						The nice thing about standards is that there are so many to choose from</q> and block:
+					</p>
+					<blockquote cite="http://searchservervirtualization.techtarget.com/definition/Our-Favorite-Technology-Quotations">
+						For years there has been a theory that millions of monkeys typing at random on millions of typewriters would
+						reproduce the entire works of Shakespeare. The Internet has proven this theory to be untrue.
+					</blockquote>
+				</section>
+
+				<section>
+					<h2>Pretty Code</h2>
+					<pre><code contenteditable>
+function linkify( selector ) {
+  if( supports3DTransforms ) {
+
+    var nodes = document.querySelectorAll( selector );
+
+    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
+      var node = nodes[i];
+
+      if( !node.className ) ) {
+        node.className += ' roll';
+      }
+    };
+  }
+}
+					</code></pre>
+					<p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+				</section>
+
+				<section>
+					<h2>Intergalactic Interconnections</h2>
+					<p>
+						You can link between slides internally,
+						<a href="#/2/3">like this</a>.
+					</p>
+				</section>
+
+				<section>
+					<section>
+						<h2>Fragmented Views</h2>
+						<p>Hit the next arrow...</p>
+						<p class="fragment">... to step through ...</p>
+						<ol>
+							<li class="fragment"><code>any type</code></li>
+							<li class="fragment"><em>of view</em></li>
+							<li class="fragment"><strong>fragments</strong></li>
+						</ol>
+
+						<aside class="notes">
+							This slide has fragments which are also stepped through in the notes window.
+						</aside>
+					</section>
+					<section>
+						<h2>Fragment Styles</h2>
+						<p>There's a few styles of fragments, like:</p>
+						<p class="fragment grow">grow</p>
+						<p class="fragment shrink">shrink</p>
+						<p class="fragment roll-in">roll-in</p>
+						<p class="fragment fade-out">fade-out</p>
+						<p class="fragment highlight-red">highlight-red</p>
+						<p class="fragment highlight-green">highlight-green</p>
+						<p class="fragment highlight-blue">highlight-blue</p>
+					</section>
+				</section>
+
+				<section>
+					<h2>Spectacular image!</h2>
+					<a class="image" href="http://lab.hakim.se/meny/" target="_blank">
+						<img width="320" height="299" src="http://s3.amazonaws.com/hakim-static/portfolio/images/meny.png" alt="Meny">
+					</a>
+				</section>
+
+				<section>
+					<h2>Export to PDF</h2>
+					<p>Presentations can be <a href="https://github.com/hakimel/reveal.js#pdf-export">exported to PDF</a>, below is an example that's been uploaded to SlideShare.</p>
+					<iframe id="slideshare" src="http://www.slideshare.net/slideshow/embed_code/13872948" width="455" height="356" style="margin:0;overflow:hidden;border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px" allowfullscreen> </iframe>
+					<script>
+						document.getElementById('slideshare').attributeName = 'allowfullscreen';
+					</script>
+				</section>
+
+				<section>
+					<h2>Take a Moment</h2>
+					<p>
+						Press b or period on your keyboard to enter the 'paused' mode. This mode is helpful when you want to take distracting slides off the screen
+						during a presentation.
+					</p>
+				</section>
+
+				<section>
+					<h2>Stellar Links</h2>
+					<ul>
+						<li><a href="https://github.com/hakimel/reveal.js">Source code on GitHub</a></li>
+						<li><a href="http://hakim.se/projects/reveal-js">Leave feedback on my site</a></li>
+						<li><a href="http://twitter.com/hakimel">Follow me on Twitter</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>It's free</h2>
+					<p>
+						reveal.js and <a href="http://www.rvl.io">rvl.io</a> are entirely free but if you'd like to support the projects you can donate below.
+						Donations will go towards hosting and domain costs.
+					</p>
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="cmd" value="_donations">
+						<input type="hidden" name="business" value="hakim.elhattab@gmail.com">
+						<input type="hidden" name="lc" value="US">
+						<input type="hidden" name="item_name" value="reveal.js / rvl.io">
+						<input type="hidden" name="no_note" value="0">
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="hidden" name="bn" value="PP-DonationsBF:btn_donate_LG.gif:NonHostedGuest">
+						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					</form>
+				</section>
+
+				<section>
+					<h1>THE END</h1>
+					<h3>BY Hakim El Hattab / hakim.se</h3>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

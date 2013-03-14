@@ -1,0 +1,1163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web Frontend Dev - The Foundation</title>
+
+    <meta name="description" content="A presentation series about frontend development for the web">
+    <meta name="author" content="John-Philip Johansson">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <link rel="stylesheet" href="css/canvas.demo.css">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section data-state="blackout">
+	<section>
+		<h1>UX Camp</h1>
+		<h1>Web Frontend Dev</h1>
+
+		<p>Part 1 of 4: The Foundation</p>
+		<br>
+		<p><em>Presented on 1 March 2013.</em></p>
+		<br>
+		<p><em>Press down for video or right for slides.</em></p>
+	</section>
+	<section>
+		<h3>Presented by</h3>
+		<p><a href="http://twitter.com/seriemajp">John-Philip Johansson</a> at <a href="http://avanade.com">Avanade</a></p>
+		<video controls preload="none" width="500px" id="testing">
+			<source src="vid/part1-480p.mp4" type="video/mp4" media="all and (max-width:480px)" />
+			<source src="vid/part1-720p.mp4" type='video/mp4' />
+			<source src="vid/part1-480p.ogv" type='video/ogg; codecs="theora, vorbis"' media="all and (max-width:480px)" />
+			<source src="vid/part1-720p.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		</video>
+		<p><em>Tip: Watch in fullscreen. It's in HD.</em></p>
+	</section>
+</section>
+<section>
+	<h2>What's in a page?</h2>
+</section>
+<section>
+    <div>
+        <div>HTML is markup</div>
+        <div>
+            <br>
+        </div>
+        <div>CSS is styling</div>
+        <div>
+            <br>
+        </div>
+        <div>JavaScript is logic</div>
+    </div>
+</section>
+<section>
+	<section>
+    <blockquote>Do you know HTML5?</blockquote>
+	<br>
+	<div><img src="img/hoodie-front.png" alt="lol" /></div>
+	</section>
+	<section>
+    <div>
+        <br>
+    </div>
+	<div>
+
+	<div>
+	<a href="http://www.w3.org/html/logo/">
+		<img src="http://www.w3.org/html/logo/badge/html5-badge-h-solo.png" width="63" height="64" alt="HTML5 Powered" title="HTML5 Powered">
+	</a>
+	</div>
+
+    <ul>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>and much more*</li>
+    </ul>
+    </div>
+	</section>
+	<section>
+		<h2>* = Connectivity / Realtime</h2>
+		<div>
+		<a href="http://www.w3.org/html/logo/">
+			<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity.png" width="133" height="64" alt="HTML5 Powered with Connectivity / Realtime" title="HTML5 Powered with Connectivity / Realtime">
+		</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ CSS3 / Styling</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3.png" width="165" height="64" alt="HTML5 Powered with Connectivity / Realtime, and CSS3 / Styling" title="HTML5 Powered with Connectivity / Realtime, and CSS3 / Styling">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Device access</h2>da
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device.png" width="197" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, and Device Access" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, and Device Access">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Graphics, 3D &amp; Effects</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics.png" width="229" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, and Graphics, 3D &amp; Effects" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, and Graphics, 3D &amp; Effects">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Multimedia</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics-multimedia.png" width="261" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, and Multimedia" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, and Multimedia">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Performance &amp; integration</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics-multimedia-performance.png" width="293" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, and Performance &amp; Integration" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, and Performance &amp; Integration">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Semantics</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics-multimedia-performance-semantics.png" width="325" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, and Semantics" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, and Semantics">
+</a>
+		</div>
+	</section>
+	<section>
+		<h2>+ Offline &amp; storage</h2>
+		<div>
+<a href="http://www.w3.org/html/logo/">
+<img src="http://www.w3.org/html/logo/badge/html5-badge-h-connectivity-css3-device-graphics-multimedia-performance-semantics-storage.png" width="357" height="64" alt="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage" title="HTML5 Powered with Connectivity / Realtime, CSS3 / Styling, Device Access, Graphics, 3D &amp; Effects, Multimedia, Performance &amp; Integration, Semantics, and Offline &amp; Storage">
+</a>
+		</div>
+	</section>
+</section>
+<section>
+    <h2>HTML5 vs. XHTML2</h2>
+    <div>
+        <br>
+    </div>
+	<a href="http://www.whatwg.org/">WHATWG</a> vs <a href="http://www.w3.org/">W3C</a>
+</section>
+<section>
+    <h2>JavaScript vs. ECMAScript 5</h2>
+</section>
+<section>
+    <h2>Whatever!</h2>
+    <div>
+        <br>
+    </div>
+	<div>
+		Let's keep it simple.
+	</div>
+    <ol>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>JavaScript</li>
+        <li>Wrap it up</li>
+    </ol>
+</section>
+<section data-state="blackout">
+    <h2>HTML5</h2>
+</section>
+<section>
+    <h2>Lots of new stuff</h2>
+    <br>
+
+    <div>
+        <p>Semantic elements</p>
+        <br>
+        <p>Offline storage</p>
+		<br>
+        <p>Multimedia</p>
+		<br>
+		<p>3D, Graphics &amp; Effects</p>
+    </div>
+</section>
+<section>
+  <section>
+    <h2>HTML5 - Semantics</h2>
+
+	<img src="img/HTML5_Semantics_512.png" alt="HTML5 semantics logo" />
+  </section>
+  <section>
+    <div>
+		<h2>Elements / tags</h2>
+        <br>
+		<div>Classic</div>
+		<pre><code class="html">&lt;div&gt; &lt;span&gt; &lt;p&gt; &lt;a&gt; &lt;del&gt; &lt;blockquote&gt;</code></pre>
+        <br>
+		<div>New</div>
+		<pre><code class="html">&lt;hgroup&gt; &lt;aside&gt; &lt;nav&gt; &lt;figure&gt; &lt;time&gt; &lt;mark&gt; &lt;!DOCTYPE html&gt; &lt;section&gt; &lt;article&gt; &lt;header&gt; &lt;footer&gt;</code></pre>
+    </div>
+	</section>
+	<section>
+		<h2>Form fields</h2>
+		<h3>Previously: Web forms 2.0</h3>
+		<br>
+		<p>input types:</p><p>text, search, url, tel, email, password, datetime, date, month, week, time, datetimelocal, number, range, color, checkbox, radio button, file</p>
+		<br>
+		<p><a href="http://www.miketaylr.com/code/input-type-attr.html" target="_blank">See samples</a></p>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=forms" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+  <section>
+    <h2>HTML5 - Offline storage</h2>
+
+	<img src="img/HTML5_Offline_Storage_512.png" alt="HTML5 offline storage logo" />
+  </section>
+  <section>
+    <div>
+        <br>
+    </div>
+    <div>Datasets &amp; Data-attributes</div>
+    <div>
+        <br>
+    </div>
+    <div>Web Storage</div>
+    <div>
+        <br>
+    </div>
+    <div>AppCache</div>
+    <div>
+        <br>
+    </div>
+    <div>Indexed DB</div>
+    <div>
+        <br>
+    </div>
+    <div>File API</div>
+    <div>
+        <br>
+    </div>
+    <div>Data-URI</div>
+</section>
+<section>
+    <h2>Datasets &amp; data-attributes</h2>
+
+    <div>Custom data to elements<br>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>
+        HTML
+        <br>
+    </div>
+    <div>
+    <pre><code class="html">&lt;div data-example="hello" /&gt;</code></pre>
+    </div>
+
+    <div>
+        JS (via dataset)
+        <br>
+    </div>
+    <div>
+<pre><code class="javascript">var data = element.dataset.example; // read
+element.dataset.example = 'goodbye'; // write</code></pre>
+    </div>
+    <div>
+        JQuery
+        <br>
+    </div>
+    <div>
+<pre><code class="javascript">var data = $('div').data('example'); // read
+$('div').data('example', 'goodbye'); // write alt 1
+$.data('div', 'example', 'goodbye'); // write alt 2</code></pre>
+    </div>
+    <div>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=dataset" target="_blank"></a></p>
+        <br>
+    </div>
+</section>
+<section>
+    <h2>Web Storage</h2>
+<br>
+    <div>Store data locally like cookies</div>
+    <div>
+        Only stores strings
+        <br>
+    </div>
+    <br>
+
+    <div>
+    <pre><code class="javascript">if( typeof Storage !== 'undefined' )
+    // Yes! localStorage and sessionStorage support!</code></pre>
+    </div>
+
+    <pre><code class="javascript">window.localStorage.example = "hello"; // write
+var world = window.localStorage.example; // read</code></pre>
+
+<pre><code class="javascript">window.sessionStorage.example = "hello"; // write
+var world = window.sessionStorage.example; // read</code></pre>
+
+	<p class="caniuse"><a href="http://caniuse.com/#feat=namevalue-storage" target="_blank"></a></p>
+</section>
+<section>
+    <h2>APP Cache</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>Offline web applications</div>
+        <br>
+<pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html manifest="/cache.manifest"&gt;
+&lt;body&gt;
+ ...
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <div>
+        <br>
+    </div>
+    <div>
+<pre><code class="text">CACHE MANIFEST
+/clock.css
+/clock.js
+/clock-face.jpg</code></pre>
+    </div>
+    <br>
+	<p class="caniuse"><a href="http://caniuse.com/#feat=offline-apps" target="_blank"></a></p>
+</section>
+<section>
+    <h2>IndexedDB</h2>
+<br>
+    <div>Indexed database</div>
+    <div>(formerly WebSimpleDB API)</div>
+    <div>
+        <br>
+    </div>
+    <div>
+<pre><code class="javascript">var kids = [ {name: "Anna"}, {name: "Betty"}, {name: "Christine"} ];
+
+var request = window.indexedDB.open("CandyDB", "My candy store");
+
+request.onsuccess = function(event) {
+  var objectStore = event.result.objectStore("kids");
+
+  for (var index = 0; index &lt; kids.length; index++) {
+    var kid = kids[index];
+
+    objectStore.add(kid).onsuccess = function(event) {
+      document.getElementById("display").textContent =
+      "Saved record for " + kid.name + " with id " + event.result;
+    };
+  }
+};</code></pre>
+    </div>
+    <div>
+        <br>
+    </div>
+	<p class="caniuse"><a href="http://caniuse.com/#feat=indexeddb" target="_blank"></a></p>
+</section>
+<section>
+	<h2>File API</h2>
+    <div>
+        <br>
+    </div>
+	<p>Multiple files without Flash!</p>
+	<br>
+	<pre><code class="html">&lt;input type="file" id="input"&gt;</code></pre>
+	<br>
+	<pre><code class="javascript">var selected_file = document.getElementById('input').files[0];</code></pre>
+	<p class="caniuse"><a href="http://caniuse.com/#feat=fileapi" target="_blank"></a></p>
+</section>
+<section>
+    <h2>Data-uri</h2>
+
+    <div>
+        <br>
+    </div>
+    <p>Embed images as string</p>
+    <div>
+        <br>
+    </div>
+    <div>
+		<img width="256" height="256" title="" alt="Demo of embeded image through data-uri" src="data:image/png;base64,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" />
+    </div>
+	<p><em>(check the source)</em></p>
+    <div>
+        <br>
+    </div>
+	<p class="caniuse"><a href="http://caniuse.com/#feat=datauri" target="_blank"></a></p>
+</section>
+</section>
+<section>
+	<section>
+		<h2>HTML5 - Multimedia</h2>
+		<img src="img/HTML5_Multimedia_512.png" alt="HTML5 Multimedia logo" />
+	</section>
+	<section>
+		<p>Audio</p>
+		<br>
+		<p>Video</p>
+	</section>
+	<section>
+		<h2>Audio</h2>
+		<br>
+		<div>
+			<pre><code class="html">&lt;audio src="elvis.ogg" controls&gt;&lt;/audio&gt;</code></pre>
+			<audio src="elvis.ogg" controls preload="auto" autobuffer></audio>
+		</div>
+		<br>
+		<p><em>No consensus on codec...</em> OGG / MP3 / WAV</p>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=audio" target="_blank"></a></p>
+	</section>
+	<section>
+		<h2>Video</h2>
+		<br>
+		<div>
+			<pre><code class="html">&lt;video width="320" height="180" controls src="demo.ogv"&gt;&lt;/video&gt;</code></pre>
+			<video width="320" height="180" controls preload="none">
+				<!-- MP4 must be first for iPad! -->
+				<source src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4" type="video/mp4"><!-- Safari / iOS, IE9 -->
+				<source src="http://clips.vorwaerts-gmbh.de/VfE.webm" type="video/webm"><!-- Chrome10+, Ffx4+, Opera10.6+ -->
+				<source src="http://clips.vorwaerts-gmbh.de/VfE.ogv" type="video/ogg"><!-- Firefox3.6+ / Opera 10.5+ -->
+			</video>
+		</div>
+		<br>
+		<p><em>No consensus on codec...</em> VP8 / MPEG-4 / Ogg</p>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=video" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>HTML5 - 3D, Graphics &amp; Effects</h2>
+		<img src="img/HTML5_3D_Effects_512.png" alt="HTML5 3D Effects logo" />
+	</section>
+	<section>
+		<p>SVG</p>
+		<br>
+		<p>Canvas</p>
+		<br>
+		<p>WebGL</p>
+	</section>
+	<section>
+		<h2>SVG</h2>
+		<br>
+		<p>Vector based images</p>
+		<br>
+		<div><img src="img/HTML5_Badge.svg" height="250" alt="SVG sample" /></div>
+
+		<p class="caniuse"><a href="http://caniuse.com/#feat=svg" target="_blank"></a></p>
+	</section>
+	<section>
+		<h2>Canvas</h2>
+		<br>
+		<p>Dynamic graphics</p>
+		<br>
+		<div><canvas id="c"></canvas></div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=canvas" target="_blank"></a></p>
+	</section>
+	<section>
+		<h2>WebGL</h2>
+		<br>
+		<p>Hardware accelerated graphics</p>
+		<br>
+		<p>[<a href="http://carvisualizer.plus360degrees.com/threejs/">Cool demo!</a>]</p>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=webgl" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+    <h2>HTML languages</h2>
+<br>
+    <div>HAML</div>
+    <div>
+    <pre><code class="haml">!!!
+%html
+  %head
+    %title BoBlog
+    %link{"rel" =&gt; "stylesheet", "href" =&gt; "main.css"}
+  %body</code></pre>
+    </div>
+    <div>
+	Generated HTML
+<pre><code class="html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;BoBlog&lt;/title&gt;
+    &lt;link rel="stylesheet" href="/stylesheets/main.css" /&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+</section>
+<section data-state="blackout">
+    <h2>
+        CSS3
+    </h2>
+</section>
+<section>
+    <h2>Lots of new stuff</h2>
+	<br>
+    <div>
+		<p>Web fonts</p>
+		<br>
+		<p>Generated content</p>
+		<br>
+		<p>Selectors</p>
+		<br>
+        <p>Styling</p>
+    </div>
+</section>
+<section>
+	<section>
+		<h2>CSS3 - Web fonts</h2>
+		<br>
+		<p>Font face</p>
+		<br>
+		<p>REM</p>
+	</section>
+	<section>
+		<h2>Font face</h2>
+		<br>
+		<div>
+			<pre><code class="css">@font-face {
+  font-family: 'Droid Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Droid Sans'), local('DroidSans'),
+       url(http://.../droidsans.woff) format('woff');
+}
+
+p { font-family: 'Droid Sans'; }</code></pre>
+		</div>
+		<br>
+		<p><a href="http://www.google.com/webfonts">Google Web Fonts</a></p>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=video" target="_blank"></a></p>
+	</section>
+	<section>
+		<h2>REM</h2>
+		<p><del>Rapid Eye Movement</del> <em>Root EM</em> units</p>
+		<br>
+		<div>
+			<pre><code>body { font-size: 62.5%; }
+p  { font-size: 1.4em; } /* =14px */
+li { font-size: 1.4em; } /* =14px? */
+
+li { font-size: 1.4rem; } /* =14px! */</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=rem" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>CSS3 - Generated content</h2>
+		<br>
+		<p>Before / After</p>
+		<br>
+		<p>Counters</p>
+	</section>
+	<section>
+		<h2>Before / After</h2>
+		<br>
+		<blockquote>To be or not to be...</blockquote>
+		<div>
+			<pre><code class="css">blockquote:before {
+  content: '\201C';
+}
+blockquote:after {
+  content: '\201D';
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=css-gencontent" target="_blank"></a></p>
+	</section>
+	<section>
+		<h2>Counters</h2>
+		<br>
+		<div style="text-align: left;">
+			<p class="counter-sample">Steal underwear</p>
+			<p class="counter-sample">...</p>
+			<p class="counter-sample">Profit!</p>
+		</div>
+		<div>
+			<pre><code>body {
+  counter-reset: section;
+}
+.counter-sample:before {
+  counter-increment: section;
+  content: 'Step ' counter(section) ': ';
+}</code></pre>
+		<style>
+	  body {
+  counter-reset: section;
+}
+.counter-sample:before {
+  counter-increment: section;
+  content: 'Step ' counter(section) ': ';
+}
+		</style>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=css-counters" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+    <section>
+        <h2>CSS3 - Selectors</h2>
+        <div>
+            <br>
+            <p>Basics</p>
+            <br>
+            <p>New</p>
+            <br>
+            <p>Media Queries</p>
+        </div>
+    </section>
+    <section>
+        <h2>CSS Basics</h2>
+
+        <div>
+            <br>
+        </div>
+<pre><code class="css">#id { background: red; }
+element { background: green; }
+.class { background: blue; }
+</code></pre>
+<br>
+<pre><code class="css">.parent .child
+.parent > .direct-child
+.element + .sibling
+
+a:visited
+a:hover
+</code></pre>
+    </section>
+    <section>
+        <h2>CSS3 New</h2>
+
+        <div>
+            <br>
+        </div>
+<pre><code class="css">[style] { background: red !important; }
+[data-view*="part-"] { border: 1px red !important; }
+</code></pre>
+<br>
+Pseudo-elements
+<pre><code class="css">.example:hover
+.example:first-child
+.example:first-letter
+.example:nth-child(2)
+.example:before
+.example:after
+.example:lang(sv)
+.example:not(.evil-twin)
+</code></pre>
+    </section>
+    <section>
+        <h2>Media Queries</h2>
+        <br>
+		<p>Apply style based on media info</p>
+        <br>
+		<div>
+			<pre><code class="css">@media screen and (max-width: 600px) {
+  .reveal .state-background {
+    background: rgba( 200, 50, 30, 0.6 );;
+  }
+}</code></pre>
+<style>
+@media screen and (max-width: 600px) {
+  .reveal .state-background {
+    background: rgba( 200, 50, 30, 0.6 );;
+  }
+}
+</style>
+		</div>
+		<br>
+		<p><a href="https://github.com/scottjehl/Respond">Polyfill for IE</a></p>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=css-mediaqueries" target="_blank"></a></p>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>CSS3 - Styling</h2>
+	</section>
+	<section>
+        <div>
+            <span style="border: 2.0px solid;border-radius:25px;padding: 0.5em;">Rounded corners</span>
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">span {
+  border-radius:25px;
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=border-radius" target="_blank"></a></p>
+	</section>
+	<section>
+        <div>
+            <span style="box-shadow: 10.0px 10.0px 5.0px rgb(136,136,136);border: 2.0px solid;padding: 0.5em;">Box shadows</span>
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">span {
+  box-shadow: 10.0px 10.0px 5.0px rgb(136,136,136);
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=boxshadow" target="_blank"></a></p>
+	</section>
+	<section>
+        <div>
+            <span style="text-shadow: 10.0px 10.0px 5.0px rgb(136,136,136);padding: 0.5em;">Text shadows</span>
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">span {
+  text-shadow: 10.0px 10.0px 5.0px rgb(136,136,136);
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=textshadow" target="_blank"></a></p>
+	</section>
+	<section>
+        <div>
+            <span style="background-image: -webkit-linear-gradient(bottom, rgb(135,135,250) 10%, rgb(0,0,0) 78%);padding: 0.5em;">Gradients</span>
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">span {
+  linear-gradient(bottom, rgb(135,135,250) 10%, rgb(0,0,0) 78%);
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=css-gradients" target="_blank"></a></p>
+	</section>
+	<section>
+        <div style="-webkit-transform: rotate(30deg);">
+            2D Transforms
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">div {
+  transform: rotate(30deg);
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=transforms2d" target="_blank"></a></p>
+	</section>
+	<section>
+        <div style="-webkit-transform: rotateX(40deg);">
+            3D Transforms
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">div {
+  transform: rotateX(40deg);
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=transforms3d" target="_blank"></a></p>
+	</section>
+	<section>
+		<div>
+        <style>#transition-demo:hover { color: #e00 !important; }</style>
+        <span id="transition-demo" style="-webkit-transition: color 1s; color: #0e0;">
+            Transitions
+        </span>
+        </div>
+		<br>
+		<div>
+			<pre><code class="css">#transition-demo {
+  transition: background 1s;
+  background: #0e0;
+}
+
+#transition-demo:hover {
+  background: #e00;
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=css-transitions" target="_blank"></a></p>
+    </section>
+</section>
+<section>
+    <section>
+        <h2>CSS Languages</h2>
+
+        <div>LESS/SASS</div>
+        <div>
+    <pre><code class="less">@color: #888;
+
+#header {
+  a {
+    color: @color;
+
+    &amp;:hover {
+      color: lighten(@color, 10%);
+}  }  } // saving space :)</code></pre>
+</div>
+        <div>Compiled CSS</div>
+        <div>
+<pre><code class="css">#header a {
+  color: #888;
+}
+#header a:hover {
+  color: #a2a2a2;
+}</code></pre>
+        </div>
+        <div>
+            Minified CSS
+        </div>
+        <div>
+<pre><code class="css">#header a{color:#888}#header a:hover{color:#a2a2a2}</code></pre>
+        </div>
+    </section>
+    <section>
+        <h2>LESS</h2>
+
+        <div>
+            <br>
+        </div>
+        <div>Variables</div>
+        <div>
+            <br>
+        </div>
+        <div>Mixins</div>
+        <div>
+            <br>
+        </div>
+        <div>Nested Rules</div>
+        <div>
+            <br>
+        </div>
+        <div>Operators</div>
+    </section>
+    <section>
+        <h2>SASS</h2>
+
+        <div>
+            <br>
+        </div>
+        <div>as LESS +</div>
+        <div>
+            <br>
+        </div>
+        <div>Nested Properties</div>
+        <div>Data Types</div>
+        <div>Flags</div>
+        <div>Debug printing</div>
+        <div>Control Directives</div>
+        <div>Functions</div>
+        <div>
+            <br>
+        </div>
+        <div>(Compass library)</div>
+    </section>
+</section>
+<section data-state="blackout">
+    <h2>JavaScript</h2>
+</section>
+<section>
+    <h2>Lots of new stuff</h2>
+	<br>
+    <div>
+		<p>Strict mode</p>
+		<br>
+		<p>Web sockets</p>
+		<br>
+		<p>Web workers</p>
+		<br>
+		<p>Server sent DOM-events</p>
+		<br>
+		<p>Geolocation</p>
+    </div>
+</section>
+<section>
+	<section>
+		<h2>JS - Strict mode</h2>
+		<br>
+		<div>
+			<pre><code class="javascript">function imStrict(){
+  "use strict";
+  // ... your code ...
+}</code></pre>
+		</div>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=use-strict" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>JS - Web sockets</h2>
+		<br>
+		<p>Communication for web apps</p>
+		<br>
+<pre><code class="javascript">var connection = new WebSocket('ws://socket.server.com');
+
+connection.onopen = function () { ... };
+
+connection.onerror = function (error) { ... };
+
+connection.onmessage = function (e) { ... };
+
+connection.send('Hello server');
+</code></pre>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=websockets" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>JS - Web workers</h2>
+		<br>
+		<p>Run scripts in the background</p>
+		<br>
+<pre><code class="javascript">var worker = new Worker('my_task.js');
+worker.onmessage = function(event) {
+  console.log("Called back by the worker!\n");
+};</code></pre>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=webworkers" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>JS - Server sent DOM-events</h2>
+		<br>
+		<p>Server continuously sends data to client</p>
+		<br>
+<pre><code class="javascript">var source = new EventSource("/path/to/my/event-stream-handler.php"); 
+
+source.onmessage = function(event) {
+  //do some thing with event.data, it is a string
+};</code></pre>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=eventsource" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+	<section>
+		<h2>JS - Geolocation</h2>
+		<br>
+		<p>Gives the users location</p>
+		<br>
+<pre><code class="javascript">navigator.geolocation.getCurrentPosition(success, error);
+
+function success(position) { ... }
+
+function error(msg) { ... }</code></pre>
+		<br>
+		<p class="caniuse"><a href="http://caniuse.com/#feat=geolocation" target="_blank"></a></p>
+	</section>
+</section>
+<section>
+    <section>
+        <h2>JavaScript Languages</h2>
+
+        <div>CoffeeScript</div>
+        <div>
+    <pre><code class="coffeescript">square = (x) -&gt; x * x </code></pre>
+        </div>
+        <div>
+<pre><code>square = function(x) {
+  return x * x;
+};</code></pre>
+        </div>
+        <div>TypeScript</div>
+        <div>
+    <pre>
+<code>function square(x) {
+  return x * x;
+}</code></pre>
+        </div>
+        <div>
+<pre><code>function square(x) {
+  return x * x;
+}</code></pre>
+        </div>
+        <div>
+            Think you need to learn this? Learn JS.
+        </div>
+    </section>
+    <section>
+        <h2>CoffeeScript</h2>
+
+        <div>
+<pre><code class="coffeescript">class Greeter
+  constructor: (@message) -&gt;
+
+  greet: () -&gt;
+    "Hello, " + this.greeting;
+
+    greeter = new Greeter "world"</code></pre>
+
+<pre><code class="javascript">var Greeter, greeter;
+
+Greeter = (function() {
+  function Greeter(message) {
+    this.message = message;
+  }
+
+  Greeter.prototype.greet = function() {
+    return "Hello, " + this.greeting;
+  };
+
+  return Greeter;
+})();
+
+greeter = new Greeter("world");</code></pre>
+        </div>
+
+    </section>
+    <section>
+        <h2>TypeScript</h2>
+
+        <div>
+<pre><code>class Greeter {
+  greeting: string;
+
+  constructor(message: string) {
+    this.greeting = message;
+  }
+
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+}
+
+var greeter = new Greeter("world");</code></pre>
+
+<pre><code>var Greeter = (function () {
+  function Greeter(message) {
+    this.greeting = message;
+  }
+
+  Greeter.prototype.greet = function () {
+    return "Hello, " + this.greeting;
+  };
+
+  return Greeter;
+})();
+
+var greeter = new Greeter("world");</code></pre>
+        </div>
+
+
+    </section>
+</section>
+<section data-state="blackout">
+    <h2>the End?</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>Questions?</div>
+	<br>
+	<br>
+	<div>
+		<em>Next Friday we'll talk JavaScript!</em>
+	</div>
+</section>
+<section data-state="blackout">
+    <h2>Resources</h2>
+
+    <div><a href="http://html5doctor.com/">HTML5 Doctor</a></div>
+	<div><a href="http://www.html5rocks.com">HTML5 Rocks</a></div>
+    <div><a href="http://www.smashingmagazine.com/">Smashing Magazine</a></div>
+    <div><a href="http://alistapart.com/">A list apart</a></div>
+    <div><a href="http://codepen.io/">Codepen.io</a></div>
+    <div><a href="http://html5demos.com/">HTML5 demos</a></div>
+    <div><a href="http://css-tricks.com/">CSS-Tricks</a></div>
+    <div><a href="http://diveintohtml5.info">Dive into HTML5 (book)</a></div>
+    <div><a href="http://caniuse.com/">Can I use</a></div>
+</section>
+</div>
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script src="js/canvas.demo.js"></script>
+
+<script>
+	// Full list of configuration options available here:
+	// https://github.com/hakimel/reveal.js#configuration
+	Reveal.initialize({
+		controls: true,
+		progress: true,
+		history: true,
+		center: true,
+		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+		// Optional libraries used to extend on reveal.js
+		dependencies: [
+	        { src: 'lib/js/classList.js', condition: function () {
+	        	return !document.body.classList;
+	        } 
+	        },
+	        { src: 'plugin/markdown/showdown.js', condition: function () {
+	        	return !!document.querySelector('[data-markdown]');
+	        } 
+	        },
+	        { src: 'plugin/markdown/markdown.js', condition: function () {
+	        	return !!document.querySelector('[data-markdown]');
+	        } 
+	        },
+	        { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+	        	hljs.initHighlightingOnLoad();
+	        } 
+	        },
+	        { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
+	        	return !!document.body.classList;
+	        } 
+	        },
+	        { src: 'plugin/notes/notes.js', async: true, condition: function () {
+	        	return !!document.body.classList;
+	        } 
+	        }
+		// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+	    ]
+	});
+</script>
+
+</body>
+</html>

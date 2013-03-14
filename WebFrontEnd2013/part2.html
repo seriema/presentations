@@ -1,0 +1,1122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web Frontend Dev - JavaScript</title>
+
+    <meta name="description" content="A presentation series about frontend development for the web">
+    <meta name="author" content="John-Philip Johansson">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section data-state="blackout">
+	<section>
+		<h1>UX Camp</h1>
+		<h1>Web Frontend Dev</h1>
+
+		<p>Part 2 of 4: JavaScript</p>
+		<br>
+		<p><em>Presented on 8 March 2013.</em></p>
+		<br>
+		<p><em>Press down for video or right for slides.</em></p>
+	</section>
+	<section>
+		<h3>Presented by</h3>
+		<p><a href="http://twitter.com/seriemajp">John-Philip Johansson</a> at <a href="http://avanade.com">Avanade</a></p>
+		<video controls preload="none" width="500px">
+			<source src="vid/part2-480p.mp4" type="video/mp4" media="all and (max-width:480px)" />
+			<source src="vid/part2-720p.mp4" type='video/mp4' />
+			<source src="vid/part2-480p.ogv" type='video/ogg; codecs="theora, vorbis"' media="all and (max-width:480px)" />
+			<source src="vid/part2-720p.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		</video>
+		<p><em>Tip: Watch in fullscreen. It's in HD.</em></p>
+	</section>
+</section>
+
+<section>
+	<h2>Win a book</h2>
+	<p>Be active during the presentation :)</p>
+	<img src="img/goodparts.jpg" alt="photo of two js books" />
+	<p>Left: JS - The Good Parts</p>
+	<p>Right: JS - The Definitive Guide</p>
+</section>
+<section>
+	<h2>Misunderstood</h2>
+	<br>
+	<blockquote>JavaScript is the world's most misunderstood programming language</blockquote>
+	<p><em>Douglas Crockford</em></p>
+</section>
+<section>
+	<section>
+		<h2>Types</h2>
+		<br>
+		<ul>
+			<li>object</li>
+			<li>number</li>
+			<li>string</li>
+			<li>array</li>
+			<li>boolean</li>
+			<li>function</li>
+		</ul>
+	</section>
+	<section>
+		<h3>object</h3>
+		<p>Container of properties,</p>
+		<p>where properties have name and value</p>
+		<br>
+<pre><code class="javascript">var example = {
+  'requires-quotes': 1,
+  does_not_require_quotes: 2
+};
+
+var one = example['requires-quotes'];      // called 'bracket notation'
+var two = example.does_not_require_quotes; // called 'dot notation'
+example.oops === undefined</code></pre>
+	</section>
+	<section>
+		<h3>number</h3>
+		<p>64-bit floating point</p>
+		<br>
+<pre><code class="javascript">100 === 1e2
+
+var x = NaN;
+x !== NaN // NaN always results in false
+isNaN(x) === true // This is how you test for NaN
+
+Infinity > 1.79769313486231570e+308
+
++'123' === 123 // convert string to number
+
+0 == false
+NaN == false</code></pre>
+
+<pre><code class="javascript">Math.floor(3.14) === 3</code></pre>
+	</section>
+	<section>
+		<h3>string</h3>
+		<p>16-bit unicode</p>
+		<br>
+<pre><code class="javascript">'hello' === "hello"
+
+'hello'.length === 5
+'hell' + 'o' === 'hello'
+
+'' == false</code></pre>
+<pre><code class="javascript">'hi'.toUpperCase() === 'HI'</code></pre>
+	</section>
+
+	<section>
+		<h3>array</h3>
+		<p>Not your typical array</p>
+		<br>
+<pre><code class="javascript">var empty = [];
+var numbers = [ 'zero', 'one', 'two', 'three', 'four',
+                'five', 'six', 'seven', 'eight', 'nine' ];
+
+empty[1] ===  undefined
+numbers[1] === 'one'
+
+empty.length === 0
+numbers.length === 10</code></pre>
+		<br>
+		<p>Lot's of methods on the <em>Array</em> object!</p>
+	</section>
+	<section>
+		<h2>boolean</h2>
+		<p>Almost typical...</p>
+		<p>...we'll talk about 'truthy' and 'falsy' later!</p>
+		<br>
+<pre><code class="javascript">var t = true;
+var f = false;
+
+t !== f
+t === !f
+!t === f
+</code></pre>
+		<br>
+	</section>
+
+	<section>
+		<h3>function</h3>
+		<blockquote>The best thing about JavaScript...</blockquote>
+		<br>
+		<p>Function Statement</p>
+<pre><code class="javascript">function foo() {}  // beware: hoisting</code></pre>
+		<br>
+		<p>Function Expression</p>
+<pre><code class="javascript">var foo = function() {};</code></pre>
+
+	</section>
+</section>
+<section>
+	<section>
+		<h2>Object</h2>
+		<br>
+		<p>Reference</p>
+		<p>Prototype</p>
+		<p>Object object</p>
+		<p>Reflection</p>
+		<p>Delete</p>
+		<p>JSON</p>
+	</section>
+	<section>
+		<h3>Reference</h3>
+		<p>Objects are always passed by reference</p>
+		<br>
+		<pre><code class="javascript">var foo = {};
+var x = foo;
+x.name = "Bar";
+
+foo.name === x.name</code></pre>
+	</section>
+	<section>
+		<h3>Prototype</h3>
+		<br>
+<pre><code class="javascript">var foo = {};
+typeof foo.uhoh === 'undefined'
+typeof foo.toString === 'function'
+</code></pre>
+	</section>
+	<section>
+		<h3>Object prototype</h3>
+		<br>
+		<ul>
+			<li>create</li>
+			<li>constructor</li>
+			<li>hasOwnProperty</li>
+			<li>isPrototypeOf</li>
+			<li>propertyIsEnumerable</li>
+			<li>toLocaleString</li>
+			<li>toString</li>
+			<li>valueOf</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Reflection</h3>
+<pre><code class="javascript">var foo = {};
+foo.bar = 'hi!';
+foo.hasOwnProperty('bar') === true
+foo.hasOwnProperty('toString') === false</code></pre>
+	</section>
+	<section>
+		<h3>Delete</h3>
+		<br>
+<pre><code class="javascript">var foo = {};
+foo.bar = 'hi!';
+delete foo.bar;  // ok!
+delete foo.uhoh; // also ok!
+
+delete foo; // will throw in 'strict mode'</code></pre>
+	</section>
+
+	<section>
+		<h2>JSON</h2>
+		<p>JavaScript Object Notation</p>
+		<br>
+		<p>Often used instead of XML</p>
+		<br>
+<pre><code class="javascript">var json = '{ "result": true, "count": 1}';
+var obj = JSON.parse(json);    // requires ECMAScript 5
+var str = JSON.stringify(obj); // this too</code></pre>
+		<br>
+		<p>If not available, use <a href="https://github.com/douglascrockford/JSON-js" target="_blank">Crockfords JSON2 library</a>.</p>
+	</section>
+</section>
+
+</section>
+<section>
+	<section>
+		<h2>Functions</h2>
+		<br>
+		<p>Function objects</p>
+		<p>Function prototype</p>
+		<p>Return value</p>
+		<p>Function vs. method vs. constructor</p>
+		<p>Control 'this'</p>
+		<p>Be controlled by 'this'</p>
+		<p>Arguments</p>
+	</section>
+	<section>
+		<h3>Function Objects</h3>
+		<br>
+<pre><code class="javascript">var foo = function () { return 'hi'; };
+foo.hah = function () { 
+  return function() {
+    return 'omg...';
+  };
+};</code></pre>
+	</section>
+	<section>
+		<h3>Function prototype</h3>
+		<br>
+		<ul>
+			<li>apply</li>
+			<li>arguments</li>
+			<li>bind</li>
+			<li>call</li>
+			<li>caller</li>
+			<li>constructor</li>
+			<li>hasOwnProperty</li>
+			<li>isPrototypeOf</li>
+			<li>length</li>
+			<li>name</li>
+			<li>propertyIsEnumerable</li>
+			<li>prototype</li>
+			<li>toLocaleString</li>
+			<li>toString</li>
+			<li>valueOf</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Return value</h3>
+<pre><code class="javascript">var func = function() { };
+func() === undefined;
+
+var func2 = function() { return; };
+func2() === undefined;
+
+var func3 = function() { return 0; };
+func3() === 0;</code></pre>
+
+	</section>
+	<section>
+		<h3>Function vs. Method vs. Constructor</h3>
+		<br>
+		<p>Function</p>
+<pre><code class="javascript">var myFunction = function() { };</code></pre>
+		<br>
+		<p>Method</p>
+<pre><code class="javascript">var myObject = {
+  myMethod: function() { }
+};</code></pre>
+		<br>
+		<p>Constructor</p>
+<pre><code class="javascript">var MyClass = function() { };</code></pre>
+	</section>
+
+	<section>
+		<h3>Function: this</h3>
+		<br>
+		<p>'this' is bound to the global object</p>
+<pre><code class="javascript">var myFunction = function() { 
+  this.hi = 'bang!';
+};
+
+window.hi; // 'bang!'</code></pre>
+	</section>
+
+	<section>
+		<h3>Method: this</h3>
+		<br>
+		<p>'this' is bound to the owning object</p>
+<pre><code class="javascript">var myObject = {
+  hi: 'ping!',
+  myMethod: function() {
+    this.hi = 'pong!';
+  }
+};
+
+myObject.hi; // 'ping!'
+myObject.myMethod();
+myObject.hi; // 'pong!'
+
+myObject['myMethod'](); // alternative way to call</code></pre>
+	</section>
+
+	<section>
+		<h3>Constructor: this</h3>
+		<br>
+		<p>'this' is bound to to the new object</p>
+<pre><code class="javascript">var MyClass = function () {
+  this.member = 'hi';
+};
+
+var myObj = new MyClass();
+myObj.member === 'hi';</code></pre>
+<pre><code class="javascript">// Don't do this!
+MyClass();
+window.member === 'hi'; // Ooops!</code></pre>
+	</section>
+
+	<section>
+		<h3>Control this</h3>
+		<br>
+<pre><code class="javascript">var dog = {
+  sound: 'Arrooooo',
+  howl: function() { return this.sound; }
+};
+
+dog.howl() === 'Arrooooo';</code></pre>
+		<br>
+		<p>Apply &amp; Call</p>
+<pre><code class="javascript">var brave = { sound: 'ROAAAARRRR' };
+dog.howl.apply(brave) === 'ROAAAARRRR';
+dog.howl.call(brave) === 'ROAAAARRRR';</code></pre>
+	</section>
+
+	<section>
+		<h3>Be controlled by this</h3>
+		<br>
+<pre><code class="javascript">function buttonClicked(){ alert(this.id); }
+var button1 = document.getElementById('btn1');
+var button2 = document.getElementById('btn2');
+
+button1.onclick = buttonClicked;
+button2.onclick = function() { buttonClicked(); };</code></pre>
+	</section>
+
+	<section>
+		<h3>Arguments</h3>
+		<br>
+<pre><code class="javascript">var howMany = function() {
+  return arguments.length;
+};
+
+howMany('hi', 4, window) === 3;</code></pre>
+
+	</section>
+
+	<section>
+		<h3>Arguments with apply</h3>
+		<br>
+<pre><code class="javascript">var howMany = function() {
+  return arguments.length;
+};
+
+howMany.apply(null, ['hi', 4, window]) === 3;</code></pre>
+	<br>
+<pre><code class="javascript">var callConsole = function() {
+  var params = [].slice.call(arguments);
+  console.log.apply(console, params);
+};
+
+howMany.apply(null, ['hi', 4, window]) === 3;</code></pre>
+	</section>
+
+	<section>
+		<h3>Arguments with call</h3>
+		<br>
+<pre><code class="javascript">var howMany = function() {
+  return arguments.length;
+};
+
+howMany.call(null, 'hi', 4, window) === 3;</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Scope</h2>
+		<br>
+		<p>Function scope, <em>not block scope</em></p>
+		<p>Hoisting</p>
+		<p>Closure</p>
+	</section>
+
+	<section>
+		<h3>Scope</h3>
+		<br>
+		<p>Block syntax !== block scope</p>
+		<p>Uses function scope</p>
+<pre><code class="javascript">var foo = function(bar) {
+  if (bar === 'baz') {
+    var hi = 'hello';
+  } else {
+    var hi = 'uhoh';
+  }
+
+  return hi;
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>Hoisting</h3>
+		<br>
+<pre><code class="javascript">var foo = function(bar) {
+  var hi;
+
+  if (bar === 'baz') {
+    hi = 'hello';
+  } else {
+    hi = 'uhoh';
+  }
+
+  return hi;
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>More hoisting</h3>
+		<br>
+<pre><code class="javascript">bar();
+
+function bar() {
+  console.log('hi');
+};</code></pre>
+		<br>
+<pre><code class="javascript">var bar;
+
+bar();
+
+bar = function() {
+  console.log('hi');
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>Closure</h3>
+		<br>
+		<p>Inner scopes access outer scopes</p>
+		<br>
+<pre><code class="javascript">var secret = 'sssh';
+
+document.getElementById('myDiv').onclick = function() {
+  this.innerHTML = secret; // the cat's out of the bag!
+};</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Inheritance</h2>
+		<br>
+		<p>Pseudoclassical</p>
+		<p>Prototypal</p>
+		<p>Functional</p>
+		<p>Parts</p>
+	</section>
+
+	<section>
+		<h3>Pseudoclassical</h3>
+		<br>
+<pre><code class="javascript">var Mammal = function(name) {
+  this.name = name;
+};
+Mammal.prototype.get_name = function() {
+  return this.name;
+};
+
+var Cat = function(name) {
+  this.name = name;
+};
+Cat.prototype = new Mammal();
+Cat.prototype.purr = function() { };</code></pre>
+	</section>
+
+	<section>
+		<h3>Prototypal</h3>
+		<br>
+<pre><code class="javascript">var myMammal = {
+  name: 'Henry',
+  get_name: function() {
+	return this.name;
+  };
+};
+
+var myCat = Object.create(myMammal);
+myCat.name = 'Sonic';
+myCat.purr = function() { };</code></pre>
+		<blockquote>Differential inheritance</blockquote>
+	</section>
+
+	<section>
+		<h3>Functional</h3>
+		<br>
+<pre><code class="javascript">var mammal = function(species) {
+  var that = {}; // will be the instance
+
+  that.get_name = function() {
+    return species.name;
+  };
+
+  return that;
+};
+
+var cat = function(species) {
+  var that = mammal(species);
+
+  that.purr = function() { };
+
+  return that;
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>Parts</h3>
+		<br>
+<pre><code class="javascript">var mammal = function(subSpecies, name) {
+  subSpecies.get_name = function() {
+    return name;
+  };
+
+  return subSpecies;
+};
+
+var cat = {};
+cat = mammal(cat, 'Sonic');</code></pre>
+	</section>
+</section>
+
+<section>
+    <h2>JavaScript Structure</h2>
+
+    <div><br></div>
+<pre><code class="javascript">// space in functions and comments above
+foo( arg );
+
+// all other times use ===
+undefinedOrNull == null;
+
+// jQuery objects are prefixed with $
+var $elements = $('div');</code></pre>
+    <div><br></div>
+    <div>Lint your code with <a href="http://www.jslint.com/">JSLint</a> or <a href="http://www.jshint.com/">JSHint</a></div>
+    <div><br></div>
+    <div><a href="http://contribute.jquery.org/style-guide/js/">jQuery's JavaScript Style Guide</a></div>
+</section>
+
+<section>
+	<section>
+		<h2>Library: jQuery</h2>
+		<br>
+		<p>jQuery is not JavaScript, it's just a library!</p>
+		<br>
+		<p>Read the <a href="http://api.jquery.com">API docs</a> for fun!</p>
+	</section>
+
+	<section>
+		<h3>Selectors</h3>
+		<p>Cross-browser element selection</p>
+		<br>
+		<p>Borrows syntax from CSS</p>
+<pre><code class="javascript">var $myElement = $('.myClass');
+$myElement = $('#myId');
+$myElement = $('div');
+
+$myElement = $('input[type="checkbox"]:checked');</code></pre>
+	</section>
+
+	<section>
+		<h3>DOM Manipulation</h3>
+		<br>
+<pre><code class="javascript">$myElement.addClass('highlight');
+$myElement.hasClass('highlight') === true
+
+$myElement.attr('style', 'background: red');
+$myElement.css('background: red');
+
+$myElement.prepend('&lt;h1&gt;Oh hi!&lt;/h1&gt;');
+</code></pre>
+
+	</section>
+
+	<section>
+		<h3>Events</h3>
+		<br>
+<pre><code class="javascript">$myElement.click(myClickHandler);
+$myElement.bind('click', myClickHandler);
+$myElement.live('click', myClickHandler);
+$myElement.on('click', myClickHandler);
+$myElement.one('click', myClickHandler);
+</code></pre>
+
+<pre><code class="javascript">$(document).ready(function() { /* document ready */ });
+$(function() { /* same thing */ });
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Effects</h3>
+		<br>
+<pre><code class="javascript">$myElement.fadeIn('fast');
+$myElement.fadeOut('slow');
+
+$myElement.slideDown();
+$myElement.slideUp();</code></pre>
+		<br>
+		<p>More effects available in <a href="http://jqueryui.com/">jQuery UI</a>.</p>
+	</section>
+
+	<section>
+		<h3>AJAX</h3>
+		<br>
+<pre><code class="javascript">jQuery.get('/api/dogs/1').done(someFunc);
+jQuery.getJSON('/api/dogs/1').done(someFunc);
+
+jQuery.post('/api/dogs', theData).done(someFunc);</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Library: Knockout</h2>
+		<br>
+		<p>MVVM library</p>
+	</section>
+
+	<section>
+		<h3>MVVM pattern</h3>
+		<p>Model View View-Model</p>
+		<br>
+		<p>Originated from Microsoft, for WPF</p>
+		<br>
+		<p>Based on MVC (Model View Controller)</p>
+		<br>
+		<p>Separate the GUI from the back-end</p>
+	</section>
+
+	<section>
+		<h3>Demo</h3>
+		<br>
+		<p>The best <a target="_blank" href="http://learn.knockoutjs.com/">library intro</a> ever.</p>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Library: Modernizr</h2>
+		<br>
+		<p>Check for HTML5 features and act accordingly</p>
+	</section>
+
+	<section>
+		<h3>Load polyfills</h3>
+		<p>polyfills: a JS shim that replicates standard API for older browsers</p>
+		<br>
+<pre><code class="javascript">Modernizr.load({
+  test: Modernizr.geolocation,
+  yep : 'geo.js',
+  nope: 'geo-polyfill.js'
+});</code></pre>
+	</section>
+
+	<section>
+		<h3>Style if supported</h3>
+		<br>
+<pre><code class="html">&lt;html class="js no-touch postmessage history boxshadow ..."&gt;
+  &lt;head&gt;&lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="box"&gt;&lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<pre><code class="css">.box {
+   border-bottom: 1px solid #666;
+   border-right: 1px solid #777;
+}
+
+.boxshadow .box {
+   border: none;
+   -webkit-box-shadow: #666 1px 1px 1px;
+      -moz-box-shadow: #666 1px 1px 1px;
+           box-shadow: #666 1px 1px 1px;
+}</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Pitfalls</h2>
+		<br>
+		<p><em>Don't try this at home!</em></p>
+	</section>
+
+	<section>
+		<h3>with</h3>
+		<br>
+<pre><code class="javascript">with (obj) {
+  a = b;
+}</code></pre>
+		<br>
+		<p>Means any of these</p>
+<pre><code class="javascript">a = b;
+a = obj.b;
+obj.a = b;
+obj.a = obj.b;</code></pre>
+	</section>
+
+	<section>
+		<h3>eval</h3>
+		<p>Pronounced 'evil'</p>
+		<br>
+<pre><code class="javascript">eval('var sum = 1 + 4;');</code></pre>
+	</section>
+
+	<section>
+		<h3>Bitwise operators</h3>
+		<br>
+<pre><code class="javascript">&  and
+|  or
+^  xor
+~  not</code></pre>
+		<p><em>Remember, JS doesn't have integers!</em></p>
+	</section>
+
+	<section>
+		<h3>Typed Wrappers</h3>
+		<br>
+<pre><code class="javascript">new Boolean(true)  // true
+new Number(4)      // 4
+new String('abc')  // 'abc'
+new Object()       // {}
+new Array()        // []</code></pre>
+	</section>
+
+	<section>
+		<h3>new</h3>
+		<br>
+		<p>Remember, functions and constructors are similar</p>
+<pre><code class="javascript">var Thing = function() { this.hello = 'world'; };
+
+var yes = new Thing(); // attaches 'hello' to 'a'
+var doh = Thing(); // attaches 'hello' to the global object</code></pre>
+		<br>
+		<p><em>Capitilize constructors if you use them</em></p>
+	</section>
+
+	<section>
+		<h3>void</h3>
+		<br>
+		<p>It's an operator...</p>
+<pre><code class="javascript">void 123 === undefined</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>More Pitfalls</h2>
+		<p><em>Seriously, don't try this at home!</em></p>
+	</section>
+
+	<section>
+		<h3>Global Variables</h3>
+		<br>
+<pre><code class="javascript">var hi = 'hello';
+window.hi = 'hello';
+hi = 'hello'; // called 'implied global'</code></pre>
+	</section>
+
+	<section>
+		<h3>Semicolon insertion</h3>
+		<br>
+		<p>JS will try to add ; where needed</p>
+		<p><em>do not rely on it!</em></p>
+<pre><code class="javascript">return // ; inserted here!
+{
+  status: true
+};</code></pre>
+	</section>
+
+	<section>
+		<h3>Reserved words</h3>
+		<br>
+<pre>abstract boolean break byte case catch char class const continue debugger
+default delete do double else enum export extends false final finally
+float for function goto if implements import in instanceof int interface
+long native new null package private protected public return short static
+super switch synchronized this throw throws transient true try typeof var
+volatile void while with</pre>
+		<br>
+		<p>Can still be used with bracket notiation</p>
+<pre><code class="javascript">foo['boolean']; // ok
+foo.boolean; // not ok!</code></pre>
+
+	</section>
+
+	<section>
+		<h3>typeof</h3>
+		<br>
+<pre><code class="javascript">typeof null === 'object'</code></pre>
+
+	</section>
+
+	<section>
+		<h3>parseInt()</h3>
+		<br>
+		<p>Usually starting with 0 indicates base 8</p>
+<pre><code class="javascript">parseInt('09') === 0 // not always, could be 9
+parseInt('09', 10) === 9 // always supply the radix</code></pre>
+
+	</section>
+
+	<section>
+		<h3>NaN and Infinity</h3>
+		<p>(NaN = Not a Number)</p>
+		<br>
+<pre><code class="javascript">typeof NaN === 'number'
+NaN === NaN // false!
+NaN !== NaN // true!
+
+isNaN(NaN) === true
+isNaN(Infinity) === false
+
+isFinite(NaN) === false
+isFinite(Infinity) === false
+isFinite(123) === true</code></pre>
+
+	</section>
+
+	<section>
+		<h3>Phony Arrays</h3>
+		<br>
+<pre><code class="javascript">typeof [] === 'object'
+
+[].constructor === Array // true! sometimes...
+
+Array.isArray([]) === true  // ECMAScript 5
+$.isArray([]) === true      // jQuery</code></pre>
+	</section>
+
+	<section>
+		<h3>Falsy Values</h3>
+		<br>
+		<p>These count as 'falsy'</p>
+<pre><code class="javascript">0
+NaN
+''
+null
+false
+undefined</code></pre>
+
+<pre><code class="javascript">if (!myValue)
+  // myValue is one of the above
+
+!!myValue // turns it into boolean</code></pre>
+	</section>
+
+	<section>
+		<h3>Falsy and boolean operators</h3>
+		<br>
+<pre><code class="javascript">console.log && console.log('hi'); // prints 'hi' if console.log exists
+
+return myValue || myDefault; // 'myValue' if truthy, else 'myDefault'</code></pre>
+
+<pre><code class="javascript">return (typeof other === 'object' && other) || that; // too cute
+return typeof other === 'object' ? other : that; // preferable
+</code></pre>
+		</section>
+
+	<section>
+		<h3>Equality</h3>
+		<br>
+<pre><code class="javascript">1 == '1'  // allows type coercion
+1 === parseInt('1') // checks type as well
+
+null == undefined
+'' == 0</code></pre>
+	</section>
+
+	<section>
+		<h3>for in</h3>
+	<br>
+<pre><code class="javascript">for (part in myCar) { // no guarantee on order
+  if (myCar.hasOwnProperty(part))
+    // do stuff
+}
+
+// or with jQuery:
+$.each(myCar, function(part) { 
+  // do stuff
+});</code></pre>
+	</section>
+
+</section>
+
+<section>
+    <h2>Promise</h2>
+
+    <br>
+    <p>Read the book <em>JavaScript - The Good Parts</em></p>
+	<p>before touching JS code again.</p>
+	<br>
+	<p><strong>Please? :)</strong></p>
+</section>
+
+<section>
+    <section>
+        <h2>Resources</h2>
+
+        <br>
+		<p>Some videos,</p>
+		<p>a few articles,</p>
+        <p>and lots of free libraries</p>
+    </section>
+	
+	<section>
+		<h3>JavaScript, wat?</h3>
+		<p>Hilarious 4min presentation of quirkiness!</p>
+		<br>
+		<video controls preload="none" width="500px">
+			<source src="vid/wat.mov" />
+		</video>
+		<p>View it <a href="https://www.destroyallsoftware.com/talks/wat">here</a>.</p>
+	</section>
+
+	<section>
+		<h3>Good JavaScript Habits for C# Developers</h3>
+		<br>
+		<iframe style="height:544px;width:960px" src="http://channel9.msdn.com/Events/MIX/MIX11/OPN08/player?w=960&h=544" frameBorder="0" scrolling="no" ></iframe>
+		<p><a href="">Source</a></p>
+	</section>
+
+	<section>
+		<h3>Knockout JS: Helping you build dynamic JavaScript UIs with MVVM and ASP.NET</h3>
+		<br>
+		<iframe style="height:544px;width:960px" src="http://channel9.msdn.com/Events/MIX/MIX11/FRM08/player?w=960&h=544" frameBorder="0" scrolling="no" ></iframe>
+		<p><a href="http://channel9.msdn.com/Events/MIX/MIX11/FRM08">Source</a></p>
+	</section>
+
+	<section>
+		<h3>Writing Maintainable JavaScript</h3>
+		<br>
+		<iframe style="height:544px;width:960px" src="http://channel9.msdn.com/Events/MIX/MIX11/EXT23/player?w=960&h=544" frameBorder="0" scrolling="no" ></iframe>
+		<p><a href="http://channel9.msdn.com/Events/MIX/MIX11/EXT23">Source</a></p>
+	</section>
+
+	<section>
+		<h3>Articles</h3>
+		<br>
+		<p><a href="http://javascript.crockford.com/">Everything written by Douglas Crockford</a></p>
+		<p><a href="http://coding.smashingmagazine.com/2012/11/05/writing-fast-memory-efficient-javascript/">Writing Fast, Memory-Efficient JavaScript</a></p>
+		<p><a href="http://coding.smashingmagazine.com/2012/09/23/useful-javascript-libraries-jquery-plugins-web-developers/">Useful JavaScript Libraries and jQuery Plugins - Part 1</a></p>
+		<p><a href="http://coding.smashingmagazine.com/useful-javascript-libraries-jquery-plugins-part-2/">Useful JavaScript Libraries and jQuery Plugins - Part 2</a></p>
+		<p><a href="http://coding.smashingmagazine.com/2012/08/17/javascript-events-responding-user/">JavaScript Events And Responding To The User</a></p>
+		<p><a href="http://viget.com/inspire/managing-javascript-on-responsive-websites">Managing JavaScript on Responsive Websites</a></p>
+		<p><a href="http://stackoverflow.com/questions/394601/which-javascript-framework-jquery-vs-dojo-vs">Which JavaScript framework (jQuery vs Dojo vs … )?</a></p>
+		<p><a href="http://odetocode.com/Blogs/scott/archive/2012/02/24/plain-old-javascript.aspx">Plain Old JavaScript</a></p>
+	</section>
+
+	<section>
+		<h3>More articles</h3>
+		<br>
+		<p><a href="http://odetocode.com/Blogs/scott/archive/2012/03/13/debugging-javascript-with-chrome.aspx">Debugging JavaScript with Chrome</a></p>
+		<p><a href="http://wekeroad.com/2012/03/21/coffeescript-or-straight-up-js-i-suck-either-way/">CoffeeScript or Straight Up Javascript? It's Decision Time</a></p>
+		<p><a href="https://developer.mozilla.org/en-US/docs/JavaScript/A_re-introduction_to_JavaScript">A re-introduction to JavaScript (JS Tutorial)</a></p>
+		<p><a href="http://dannorth.net/2011/12/19/the-rise-and-rise-of-javascript/">The rise and rise of JavaScript</a></p>
+		<p><a href="http://coding.smashingmagazine.com/2011/05/30/10-oddities-and-secrets-about-javascript/">Ten Oddities And Secrets About JavaScript</a></p>
+		<p><a href="http://sourcecodebean.com/archives/javascript-on-the-server-side/1161">Javascript on the server side</a></p>
+		<p><a href="http://en.wikipedia.org/wiki/Unobtrusive_JavaScript">Unobtrusive JavaScript</a> (Wikipedia)</p>
+	</section>
+
+    <section>
+        <h3>JavaScript utility libraries</h3>
+
+        <div>
+            <br>
+        </div>
+		<ul style="list-style: none;">
+			<li><a target="_blank" href="http://jquery.com/">jQuery</a> - utility library</li>
+            <li><a target="_blank" href="http://underscorejs.org/">Underscore.js</a> - another utility library</li>
+			<li><a target="_blank" href="http://sizzlejs.com/">Sizzle</a> - DOM selector used by jQuery</li>
+			<li><a target="_blank" href="http://qunitjs.com/">QUnit</a> - Unit Testing framework used by jQuery</li>
+			<li><a target="_blank" href="http://jqueryui.com/">jQuery UI</a> - lot's of UI components</li>
+            <li><a target="_blank" href="http://jquerymobile.com/">jQuery Mobile</a> - look and act as native apps for mobile</li>
+			<li><a target="_blank" href="http://bassistance.de/jquery-plugins/jquery-plugin-validation/">jQuery Validate</a> - form validation</li>
+		</ul>
+    </section>
+    <section>
+        <h3>JavaScript other libraries</h3>
+
+        <div>
+            <br>
+        </div>
+		<ul style="list-style: none;">
+			<li><a target="_blank" href="http://raphaeljs.com/">Raphaël</a> - SVG drawing</li>
+            <li><a target="_blank" href="http://mrdoob.github.com/three.js/">Three.js</a> - 3D rendering</li>
+            <li><a target="_blank" href="http://www.jstorage.info/">jStorage</a> - localStorage wrapper, with fallback</li>
+            <li><a target="_blank" href="http://modernizr.com/">Modernizr</a> - feature detection</li>
+            <li><a target="_blank" href="http://knockoutjs.com/">Knockout.js</a> - MVVM framework</li>
+            <li><a target="_blank" href="http://backbonejs.org/">Backbone.js</a> - MVC framework</li>
+            <li><a target="_blank" href="http://angularjs.org/">AngularJS</a> - another MVC framework (by Google)</li>
+		</ul>
+    </section>
+</section>
+
+<section>
+    <h2>the End?</h2>
+
+    <br>
+    <p>Questions?</p>
+	<br>
+	<br>
+	<p><em>Next Friday we'll talk best practices!</em></p>
+	<br>
+	<p><a href="http://bit.ly/webfrontend">bit.ly/webfrontend</a></p>
+</section>
+</div>
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:true,
+        progress:true,
+        history:true,
+        center:true,
+
+        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

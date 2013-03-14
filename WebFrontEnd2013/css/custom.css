@@ -1,0 +1,13 @@
+.reveal .caniuse {
+	text-align: right;
+}
+
+.reveal .caniuse a {
+	color: #808080;
+	font-size: 0.8em;
+	content: "Check browser support";
+}
+
+.reveal .caniuse a:after {
+	content: "Check browser support";
+}

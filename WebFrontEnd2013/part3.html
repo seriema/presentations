@@ -1,0 +1,1156 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Web Frontend Dev - From the trenches</title>
+
+    <meta name="description" content="A presentation series about frontend development for the web">
+    <meta name="author" content="John-Philip Johansson">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write('<link rel="stylesheet" href="css/print/' + ( window.location.search.match(/print-pdf/gi) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">');
+    </script>
+
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+<section data-state="blackout">
+    <h1>UX Camp</h1>
+
+    <h1>Web Frontend Dev</h1>
+
+    <p>Part 3 of 4: From the Trenches</p>
+</section>
+
+<section>
+	<section>
+		<h2>Performance</h2>
+
+		<div>
+			<br>
+		</div>
+		<div>Perceived performance
+		</div>
+		<div>
+			<br>
+		</div>
+		<div>
+			<div style="">Optimize caching</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize round-trip times</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize request overhead</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize payload size</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Optimize browser rendering</div>
+		</div>
+	</section>
+	<section>
+		<h2>Performance tools</h2>
+		<br>
+		<p><a href="https://developers.google.com/speed/pagespeed/">Google Page Speed</a></p>
+		<p><a href="http://developer.yahoo.com/yslow/">Yahoo! YSlow</a></p>
+		<br>
+		<p><a href="http://www.smushit.com/ysmush.it/">Smush.it</a></p>
+		<br>
+		<p>Network console</p>
+		<p>Profiler</p>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Effective JS</h2>
+		<br>
+		<p>Know which version of JS you use ("use strict")</p>
+		<p>Implicit coercions</p>
+		<p>toString() and valueOf(), but "object " + myObj gives "object valueOfMyObj"</p>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Implicit coercions</h2>
+		<br>
+<pre><code class="javascript">isNaN('foo') === true
+isNaN(undefined) === true
+isNaN({}) === true
+isNaN({valueOf: 'foo'}) === true
+x !== x // only true if NaN</code></pre>
+	</section>
+
+	<section>
+		<h3>truthy and falsy</h3>
+		<br>
+<pre><code class="javascript">function point(x, y) {
+  if (!x)
+    x = 320;
+  if (!y)
+    y = 240;
+
+  return { x: x, y: y };
+}
+
+point(0, 0) === { x: 320, y: 240 };
+</code></pre>
+
+<pre><code class="javascript">function point(x, y) {
+  if (typeof x === "undefined")
+    x = 320;
+  if (typeof y === "undefined")
+    y = 240;
+
+  return { x: x, y: y };
+}
+
+point(0, 0) === { x: 320, y: 240 };
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Class</h2>
+
+<pre><code class="javascript">function box() {
+  var val = undefined;
+  return {
+    set: function(newVal) { val = newVal; },
+    get: function() { return val; },
+  };
+}
+
+var b = box();
+b.set(98.6);
+b.get(); // 98.6
+</code></pre>
+
+<pre><code class="javascript">var Tree = function(x) {
+  this.children = [];
+  this.value = x;
+}
+
+Tree.prototype = {
+  addChild: function(x) {
+    this.children.push(x);
+  }
+
+  printChildren: function() {
+    this.children.forEach(function(child) {
+      console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
+    };
+  }
+};
+</code></pre>
+
+<pre><code class="javascript">Tree.prototype.printChildren = function() {
+  this.children.forEach(function(child) {
+    console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
+  };
+};
+</code></pre>
+
+<pre><code class="javascript">Tree.prototype.printChildren = function() {
+  var self = this;
+  this.children.forEach(function(child) {
+    console.log('Child ' + child.value, 'Parent ' + self.value);
+  };
+};
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Calling superclass constructor</h3>
+
+<pre><code class="javascript">function Actor(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+function SpaceShip(x, y) {
+  Actor.call(this, x, y);
+  this.points = 0;
+}
+SpaceShip.prototype = Object.create(Actor.prototype);
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Arguments</h2>
+		<br>
+		<p>Undefined arguments</p>
+		<br>
+		<p>Array</p>
+		<br>
+		<p>Arguments object</p>
+		<br>
+		<p>Options</p>
+	</section>
+
+	<section>
+		<h3>Undefined arguments</h3>
+		<br>
+<pre><code class="javascript">var sum = sum(1, 2, 3, 4, 5);
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Array</h3>
+		<br>
+<pre><code class="javascript">send(url, [1, 2, 3, 4, 5]);
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Arguments object</h3>
+		<br>
+<pre><code class="javascript">send( { url: url, data: [1, 2, 3, 4, 5] } );
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Options</h3>
+		<br>
+<pre><code class="javascript">// Seen something like this?
+var alert = new Alert("Error", message, "blue",
+                      "white", "black", "error", true);</code></pre>
+
+<pre><code class="javascript">// Prefer this instead
+var options = { titleColor: "blue", bgColor: "white",
+                textColor: "black", icon: "error", modal: true }
+var alert = new Alert("Error", message, options);
+</code></pre>
+
+<pre><code class="javascript">// How to do it
+function Alert(title, message, opts) {
+  // ...
+  var defaultOpts = { ... };
+  opts = $.extend(defaultOpts, opts || {});
+  this = $.extend(this, opts);
+}
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Don't overdo monkey-patching</h2>
+	<br>
+<pre><code class="javascript">Array.prototype.split = function(i) {
+  return [this.slice(0, i), this.slice(i)];
+};</code></pre>
+	<p>That seems useful, but what if everyone did this?</p>
+</section>
+
+<section>
+	<section>
+		<h2>IIFE</h2>
+		<p>Immediately Invoked Function Expressions</p>
+		<br>
+<pre><code class="javascript">(function() {
+  // do secret stuff
+})();
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Solving a common closure issue</h3>
+		<br>
+<pre><code class="javascript">function wrapElements(a) {
+  var result = [], i = a.length;
+  while (--i)
+    result[i] = function() { return a[i]; };
+
+  return result;
+}
+
+var wrapped = wrapElements([10, 20, 30, 40, 50]);
+wrapped[0](); // ?
+</code></pre>
+
+<pre><code class="javascript">function wrapElements(a) {
+  var result = [], i = a.length;
+  while (--i) {
+    (function(j) {
+      result[i] = function() { return a[j]; };
+    })(i);
+  }
+
+  return result;
+}
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Named function expression</h2>
+	<br>
+	<p>Which one to choose?</p>
+<pre><code class="javascript">function double(x) { ... }
+// or
+var double = function(x) { ... };
+// or even
+var double = function _double(x) { ... };</code></pre>
+	<p>The name can be used for recursion</p>
+	<p>and instead of <em>anonymous function</em> in callstack</p>
+<pre><code class="javascript">var f = function find(tree, key) {
+  // ...
+  return find(...);
+};</code></pre>
+</section>
+
+<section>
+	<h2>Functions in block scope</h2>
+	<br>
+	<p>But block scope didn't exist?..</p>
+<pre><code class="javascript">function f() { return "global"; }
+function test(x) {
+  var result = [];
+  if (x) {
+    function f() { return "local"; } // block-local
+    result.push(f());
+  }
+
+  result.push(f());
+  return result;
+}
+test(true); // ?
+test(false); // ?</code></pre>
+<p>Depends on the if statement is run</p>
+</section>
+
+<section>
+	<section>
+		<h2>Functions</h2>
+		<br>
+		<p>Array.map() in ES5, otherwise use jQuery</p>
+		<p>Variadic functions (multiple arguments, use array or 'arguments')</p>
+		<p>Function.bind(), remember apply() and call()?</p>
+		<p>Curry</p>
+		<p>Safer constructors</p>
+	</section>
+
+	<section>
+		<h3>Function.bind()</h3>
+		<br>
+<pre><code class="javascript">var buffer = {
+  entries: [],
+  add: function(s) {
+    this.entries.push(s);
+  }
+};
+
+var source = ["867", "-", "5309"];
+source.forEach(buffer.add); // error: entries is undefined
+
+source.forEach(buffer.add.bind(buffer)); // ok!</code></pre>
+	</section>
+
+	<section>
+		<h3>Curry functions</h3>
+		<br>
+<pre><code class="javascript">var simpleUrl = function(protocol, domain, path) {
+  return protocol + "://" + domain + "/" + path;
+}
+
+var myPageUrl = simpleUrl.bind(null, 'http', 'spelkalendern.se');
+myPageUrl('about') === 'http://spelkalendern.se/about';</code></pre>
+	</section>
+
+	<section>
+	<h3>Safer constructors</h3>
+	<br>
+<pre><code class="javascript">function User(name, passwordHash) {
+  if (!(this instanceof User))
+    return new User(name, passwordHash);
+
+  this.name = name;
+  this.passwordHash = passwordHash;
+}
+
+var user1 = new User('abc', '123'); // as expected
+var user2 = User('def', '456'); // now also works!</code></pre>
+	</section>
+
+	<section>
+		<h3>Even safer constructor</h3>
+		<br>
+<pre><code class="javascript">function User(name, passwordHash) {
+  var self = this instanceof User ? this : Object.create(User.prototype);
+
+  self.name = name;
+  self.passwordHash = passwordHash;
+
+  return self;
+}
+
+var user1 = new User('abc', '123'); // as expected
+var user2 = User('def', '456'); // now also works!</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>tips on semantics</h2>
+	<br>
+    <pre><code class="html">&lt;article&gt;For what you would syndicate&lt;/article&gt;
+&lt;section&gt;For things that belong together&lt;/section&gt;
+&lt;div&gt;Otherwise&lt;/div&gt;<br><br>&lt;header&gt;At the start of areas&lt;/header&gt;
+&lt;footer&gt;at the end.&lt;/footer&gt;
+	
+nav och aside
+	</code></pre>
+	<br>
+	<div>
+		Doesn't work in IE8 and below, but you can use <a href="https://github.com/aFarkas/html5shiv/">html5shiv</a>.
+	</div>
+</section>
+
+<section>
+    <section>
+        <h2>CSS Architecture</h2>
+
+        <div>
+            <br>
+        </div>
+        <div>SMACSS</div>
+            <br>
+        <div>OOCSS</div>
+            <br>
+        <div>BEM</div>
+    </section>
+    <section>
+        <h2>SMACSS</h2>
+
+        <div>
+            <a href="http://smacss.com">Scalable and Modular Architecture for CSS</a>
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <div>
+                <br>
+            </div>
+			<pre><code class="css">h1             /* Base   */
+
+.l-line        /* Layout */
+
+.mod-tooltip   /* Module */
+
+.is-hidden     /* State  */
+
+.highlight     /* Theme  */
+</code></pre>
+        </div>
+
+
+    </section>
+    <section>
+        <h2>OOCSS</h2>
+        <div>
+            <a href="http://oocss.org/">Object-Oriented CSS</a>
+        </div>
+        <div>
+            <br>
+            <br>
+        </div>
+        <div>
+            <a href="http://www.stubbornella.org/content/2010/06/25/the-media-object-saves-hundreds-of-lines-of-code/">The
+                Media object</a>
+        </div>
+        <div>
+            <img src="http://i.imgur.com/OjRqjgo.png">
+            <br>
+        </div>
+<pre><code class="css">.media { margin: 10px; }
+.media, .bd { overflow: hidden; _overflow: visible; zoom: 1; }
+.media .img { float: left; margin-right: 10px; }
+.media .img img { display: block; }
+.media .imgExt{ float: right; margin-left: 10px; }</code></pre>
+    </section>
+    <section>
+        <h2>BEM</h2>
+
+        <div>
+			<a href="http://bem.info">Blocks, Elements, and Modifiers</a>
+        </div>
+            <br>
+        <div>Blocks and Elements</div>
+        <div>
+            <img src="http://i.imgur.com/YygZGus.png">
+            <br>
+        </div>
+        <div>
+            <br>
+        </div>
+        <div>Modifier</div>
+        <div>
+            <img src="http://i.imgur.com/FsTZW64.png">
+            <br>
+        </div>
+
+
+    </section>
+    <section>
+        <h2>CSS Specificity</h2>
+
+        <div>Use classes, avoid elements, don't use ID's</div>
+        <div>
+            <br>
+        </div>
+        <div>Right to left!</div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <div>inline style &gt; external</div>
+            <div>
+                <br>
+            </div>
+            <div>Don't be overly specific</div>
+<pre><code class="css">.intro
+.main .intro  /* later */
+.main p.intro  /* even later */
+section.main p.intro  /* uhoh... */
+article section.main p.intro  /* I GIVE UP! */</code></pre>
+<pre><code class="css">p.intro /* bad */
+.intro  /* good */</code></pre>
+<pre><code class="css">.main .intro /* ok */
+.main-intro  /* better */</code></pre>
+			<pre><code class="css">.intro { border: none !important; } /* probably wrong! */</code></pre>
+        </div>
+    </section>
+
+</section>
+
+<section>
+	<h2>JS</h2>
+	<p>default parameters (som jQuery, if undefined ...)</p>
+	<p>default options object (jQuery.extend)</p>
+	<p>typ av parameter (if string, if function, etc)</p>
+</section>
+
+<section>
+    <h2>Tips</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>
+        <div>Don't do inline styling or JavaScript</div>
+		<br>
+        <div>Find reusable components, break them up in a separate file</div>
+        <div>js/components/article-selection.js</div>
+        <div>less/components/article-selection.less</div>
+        <div>html/components/article-selection.html (kinda)</div>
+		<br>
+        <div>Use or learn from frameworks</div>
+    </div>
+    <div>
+        <br>
+    </div>
+</section>
+
+
+<section data-state="blackout">
+	<h1>Design Patterns</h1>
+</section>
+
+<section>
+	<h2>Patterns</h2>
+	<br>
+	<ul>
+		<li>Solves a particular problem</li>
+		<li>Does not have an obvious solution</li>
+		<li>Describes a proven concept</li>
+		<li>Describes a relationship</li>
+	</ul>
+</section>
+
+<section>
+	<h2>Pretend privacy</h2>
+<pre><code class="javascript">var myObj = {};
+myObj._private = 'ssssh';</code></pre>
+</section>
+
+<section>
+	<section>
+		<h2>The Module Pattern</h2>
+		<br>
+		<p>Enables private and public</p>
+	</section>
+
+	<section>
+		<h3>Basic module</h3>
+		<br>
+		<p>Not visible outside of scope function</p>
+		<pre><code class="javascript">(function () {
+
+  var $title = $('article h1');
+  var originalTitle = $title.text();
+
+  var reverseString = function(s) {
+    return s.split("").reverse().join("");
+  }
+
+  $title.text( reverseString(originalTitle) );
+
+}());</code></pre>
+	</section>
+
+	<section>
+		<h3>Module-based class</h3>
+		<br>
+		<pre><code class="javascript">var testModule = (function () {
+  var privateVariable = 0;
+
+  var privateFunction = function() { ... };
+
+  return {
+    publicFunction: function () { ... };
+  };
+})();</code></pre>
+	</section>
+
+	<section>
+		<h3>Revealing Module Pattern</h3>
+		<br>
+		<pre><code class="javascript">var testModule = (function () {
+  var privateVariable = 0;
+
+  var privateFunction = function() { ... };
+
+  var publicFunction = function() { ... };
+
+  return {
+    theFunction: publicFunction
+  };
+})();</code></pre>
+	</section>
+
+	<section>
+		<h3>Import modules</h3>
+		<br>
+		<pre><code class="javascript">var testModule = (function ($, w, undefined) {
+  // ...
+})(jQuery, window);</code></pre>
+	</section>
+
+	<section>
+		<h3>Extend module</h3>
+		<br>
+<pre><code class="javascript">var testModule = (function ($) {
+
+  $.newMethod = function() { ... };
+
+})(jQuery = jQuery || {});
+</code></pre>
+	</section>
+
+	<section>
+		<h3>AMD, CommonJS, RequireJS, and ES Harmony</h3>
+		<br>
+<pre><code class="javascript">define(
+  module_id /*optional*/, 
+  [dependencies] /*optional*/, 
+  definition function /*function for instantiating the module or object*/
+);</code></pre>
+
+<pre><code class="javascript">define('myModule', // optional
+  ['math', 'graph'], // optional
+  function ( math, graph ) {
+    var isReady = false, foobar;
+
+    // note the inline require within our module definition
+    require(['foo', 'bar'], function (foo, bar) {
+        isReady = true;
+        foobar = foo() + bar();
+    });
+
+    // Note that this is a slightly different pattern
+    // With AMD, it's possible to define modules in a few
+    // different ways due as it's relatively flexible with
+    // certain aspects of the syntax
+    return {
+      plot: function(x, y){
+        return graph.drawPie(math.randomGrid(x,y));
+      }
+    }
+  };
+});</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Observer vs. Pub/Sub</h2>
+		<br>
+		<p>Observer pattern</p>
+		<br>
+		<p>Publisher / Subscriber pattern</p>
+	</section>
+
+	<section>
+		<h3>Observer pattern</h3>
+		<br>
+		<p>Requires knowledge of the object that notifies</p>
+		<br>
+<pre><code class="javascript">// observe
+$('.myModule').bind('eventName', myCallback);
+
+// notify
+$('.myModule').trigger('eventName');
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Publisher / Subscriber pattern</h3>
+		<br>
+		<p>Uses 'channels' so no knowledge of origin is needed</p>
+		<br>
+<pre><code class="javascript">// subscribe
+$(document).on('namespace/eventName', myCallback); // put it on the root
+
+// publish
+$(document).trigger('eventName'); // doesn't matter much what element
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Facade pattern</h2>
+		<p>Limited abstractions of methods</p>
+		<br>
+		<p>Seen a lot in jQuery</p>
+<pre><code class="javascript">$('.myClass').css('background', 'red');
+// same as
+$('.myClass').attr('style', 'background: red');
+</code></pre>
+
+<pre><code class="javascript">jQuery.extend({
+  isArray: Array.isArray || function( obj ) {
+    return jQuery.type(obj) === "array";
+  },
+  // ...
+});
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Factory pattern</h2>
+		<p>Generic interface for creating objects</p>
+		<br>
+<pre><code class="javascript">function Car() { ... };
+function Truck() { ... };
+
+function VehicleFactory() {};
+VehicleFactory.prototype.createVehicle = function ( options ) {
+  if( options.vehicleType === "car" )
+    this.vehicleClass = Car;
+  else
+    this.vehicleClass = Truck;
+
+  return new this.vehicleClass( options );
+};
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Cascade / Chaining</h2>
+		<br>
+		<p>Return 'this' instead of 'undefined'</p>
+	</section>
+
+	<section>
+		<h3>Chaining in jQuery</h3>
+		<br>
+		<p>Typical (don't do this)</p>
+<pre><code class="javascript">$('div.main-content').addClass('highlight');
+$('div.main-content').click(onMainContentClick);
+</code></pre>
+
+		<p>At least do this</p>
+		<pre><code class="javascript">var $mainContent = $('div.main-content');
+
+$mainContent.addClass('highlight');
+$mainContent.click(onMainContentClick);</code></pre>
+
+		<p>Preferably use chaining</p>
+		<pre><code class="javascript">var $mainContent = $('div.main-content');
+
+$mainContent.addClass('highlight').click(onMainContentClick);</code></pre>
+	</section>
+
+	<section>
+		<h3>How to do chaining</h3>
+		<br>
+<pre><code class="javascript">// taken from the actual jQuery source
+jQuery.fn.extend({
+  addClass: function( value ) {
+    // ...
+
+    return this;
+  }
+});
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Promises</h2>
+		<p>AKA deferreds or futures</p>
+		<br>
+		<p>Classical</p>
+<pre><code class="javascript">$.getJSON(url, data, onDone);
+</code></pre>
+		<p>Using promises</p>
+<pre><code class="javascript">$.getJSON(url, data).done(onDone);
+</code></pre>
+		<br>
+		<p>Do your own by calling <a href="http://api.jquery.com/category/deferred-object/">jQuery.Deferred()</a></p>
+	</section>
+</section>
+
+<section>
+	<div>Object.defineProperty( newObject, "someKey", {
+value: "for more control of the property's behavior",
+writable: true,
+enumerable: true,
+configurable: true
+});	</div>
+</section>
+
+<section>
+    <h2>Frameworks</h2>
+    <br>
+    <div>
+        <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>
+    </div>
+    <br>
+    <div>
+        <a href="http://foundation.zurb.com/">Zurb Foundation</a>
+    </div>
+    <br>
+    <div>
+        <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>
+    </div>
+    <br>
+    <div>
+        <a href="http://www.initializr.com/">Initializr</a>
+    </div>
+</section>
+
+<section>
+	<h2>Do's and don'ts</h2>
+	<br>
+	<p>No inline JavaScript</p>
+	<p>No inlince CSS</p>
+	<p>CSS on top, JS on bottom of the page</p>
+	<p>Considor font-icons</p>
+	<p>Consider image sprites</p>
+	<p>Use a reset.css or normalize.css</p>
+	<p>Optimize your images</p>
+	<p>Pick a coding style and stick with it</p>
+</section>
+
+<section>
+    <h2>Responsive Web Design</h2>
+
+    <div>
+        <br>
+    </div>
+    <div>
+        <div>One HTML, multiple sizes</div>
+        <div>
+            <br>
+        </div>
+        <div>Mobile-first vs Desktop-first</div>
+    </div>
+    <div>
+        <br>
+    </div>
+    <div>Images (x2)</div>
+    <div>
+        <br>
+    </div>
+    <div>3-5 Breakpoints</div>
+</section>
+
+<section>
+	<section>
+		<h2>Dev flow</h2>
+
+		<p>console.log and console.dir</p>
+		<p>LiveReload + WebMatrix, or live.js, or WebStorm</p>
+		<p>Chrome console</p>
+		<p>Fiddler</p>
+		<p>Web Essentials and ReSharper for VS</p>
+		<p>Dropbox and bit.ly</p>
+		<p>Codepen / jsFiddle</p>
+	</section>
+</section>
+
+<section data-state="blackout">
+	<h1>Something from a project</h1>
+</section>
+
+<section>
+	<section>
+		<h2>Some useful jQuery methods</h2>
+		<br>
+		<p><a href="https://github.com/seriema/jp.js">github.com/seriema/jp.js</a></p>
+	</section>
+
+	<section>
+		<h3>Missing and Exists</h3>
+		<br>
+<pre><code class="javascript">if ($('.aClass').exists())
+  // do something</code></pre>
+
+<pre><code class="javascript">if ($('.someClass').missing())
+  return;</code></pre>
+	</section>
+
+	<section>
+		<h3>Serialize form to object</h3>
+		<br>
+<pre><code class="javascript">var formData = $('form').serializeObject();
+$.post(url, formData);</code></pre>
+	</section>
+
+	<section>
+		<h3>Manipulate URL parameters</h3>
+		<br>
+<pre><code class="javascript">// read
+var sort = $.urlParam('sort');
+
+// write
+$.urlParam('sort', 'ascending');</code></pre>
+	</section>
+
+	<section>
+		<h3>Combine objects</h3>
+		<br>
+<pre><code class="javascript">var diff = $.difference(obj1, obj2);
+
+var intersection = $.intersect(obj1, obj2);
+
+var union = $.union(obj1, obj2);
+
+var symDiff = $.symmetric(obj1, obj2);</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>Debug flag</h2>
+	<br>
+	<p>Enable debug methods in your code</p>
+	<pre>http://theproject:123/?debug=true</pre>
+<pre><code class="javascript">// page init, not included in production code
+if ( urlParam('debug') === 'true' )
+  MyLib.debug = true;
+
+// then in your code
+if ( MyLib.debug )
+  // do stuff
+</code></pre>
+
+	<p>Time functions</p>
+	<p>Expose debug functions</p>
+	<p>Check AJAX results</p>
+	<p>Enable offline-mode</p>
+</section>
+
+<section>
+	<h2>Styling flags</h2>
+	<br>
+	<pre>http://theproject:123/?theme=summer</pre>
+
+	<p>Switch CSS files with a flag</p>
+	<p>Highlight specific elements</p>
+	<p>Enable live edit</p>
+</section>
+
+<section>
+	<h2>Structures</h2>
+	<br>
+	<p>Separate HTML, CSS, and JS</p>
+	<p>If possible, use the same names</p>
+	<br>
+	<p>Keep URL's out of JS, use data-attributes in HTML if needed</p>
+</section>
+
+<section>
+	<section>
+		<h2>Components</h2>
+	</section>
+
+	<section>
+		<h3>Basic idea</h3>
+		<br>
+		<p>Reusability</p>
+		<p>Encapsulated</p>
+		<p>No knowledge of outside components</p>
+		<p>Little knowledge of inside components</p>
+		<p>Basic "inheritance"</p>
+	</section>
+
+	<section>
+		<h3>Example</h3>
+		<p>Core component</p>
+		<br>
+		<p>ajaxSimpleAction!</p>
+	</section>
+
+	<section>
+		<h3>Example</h3>
+		<p>Composite component</p>
+		<br>
+		<p>ajaxTooltipConfirm!</p>
+	</section>
+
+	<section>
+		<h3>Structure</h3>
+		<br>
+		<p>One HTML file</p>
+		<p>One or zero CSS files</p>
+		<p>One or zero JS files</p>
+		<br>
+		<p>Follow a strict naming convention</p>
+	</section>
+
+	<section>
+		<h3>Self-checking</h3>
+		<br>
+		<p>The JS warns if needed elements are missing</p>
+		<p>The JS warns if the AJAX isn't as expected</p>
+	</section>
+
+</section>
+
+<section data-state="blackout">
+    <section>
+        <h2>Resources</h2>
+
+        <br>
+		<p>Some videos,</p>
+		<p>a few articles,</p>
+        <p>and lots of free libraries</p>
+    </section>
+	
+	<section>
+		<h3>JavaScript, wat?</h3>
+		<p>Hilarious 4min presentation of quirkiness!</p>
+		<br>
+		<p>View it <a href="https://www.destroyallsoftware.com/talks/wat">here</a>.</p>
+	</section>
+
+<section>
+    <h3>50 performance tricks</h3>
+
+    <h3>to make your HTML5 apps and sites faster</h3>
+
+    <iframe src="http://channel9.msdn.com/Events/Build/2012/3-132/player?w=960&amp;h=540"
+            style="height: 540.0px;width: 960.0px;">&amp;amp;amp;nbsp;
+    </iframe>
+</section>
+
+</section>
+
+<section>
+    <h2>the End?</h2>
+    <br>
+    <p>Questions?</p>
+	<br>
+	<p>I got one: do you want a talk on functional programming?</p>
+</section>
+</div>
+
+
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls:true,
+        progress:true,
+        history:true,
+        center:true,
+
+        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies:[
+            { src:'lib/js/classList.js', condition:function () {
+                return !document.body.classList;
+            } },
+            { src:'plugin/markdown/showdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/markdown/markdown.js', condition:function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } },
+            { src:'plugin/notes/notes.js', async:true, condition:function () {
+                return !!document.body.classList;
+            } }
+            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
