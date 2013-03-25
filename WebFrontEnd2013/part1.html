@@ -61,6 +61,7 @@
 			<source src="vid/part1-720p.ogv" type='video/ogg; codecs="theora, vorbis"' />
 		</video>
 		<p><em>Tip: Watch in fullscreen. It's in HD.</em></p>
+		<p><small>Download: <a href="vid/part1-720p.mp4">MP4 720p</a>, <a href="vid/part1-480p.mp4">MP4 480p</a>, <a href="vid/part1-720p.ogv">OGG 720p</a>, or <a href="vid/part1-480p.ogv">OGG 480p</a>.</small></p>
 	</section>
 </section>
 <section>
@@ -1115,49 +1116,10 @@ var greeter = new Greeter("world");</code></pre>
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.min.js"></script>
+<script src="js/reveal.init.js"></script>
 
 <script src="js/canvas.demo.js"></script>
 
-<script>
-	// Full list of configuration options available here:
-	// https://github.com/hakimel/reveal.js#configuration
-	Reveal.initialize({
-		controls: true,
-		progress: true,
-		history: true,
-		center: true,
-		theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-		transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-		// Optional libraries used to extend on reveal.js
-		dependencies: [
-	        { src: 'lib/js/classList.js', condition: function () {
-	        	return !document.body.classList;
-	        } 
-	        },
-	        { src: 'plugin/markdown/showdown.js', condition: function () {
-	        	return !!document.querySelector('[data-markdown]');
-	        } 
-	        },
-	        { src: 'plugin/markdown/markdown.js', condition: function () {
-	        	return !!document.querySelector('[data-markdown]');
-	        } 
-	        },
-	        { src: 'plugin/highlight/highlight.js', async: true, callback: function () {
-	        	hljs.initHighlightingOnLoad();
-	        } 
-	        },
-	        { src: 'plugin/zoom-js/zoom.js', async: true, condition: function () {
-	        	return !!document.body.classList;
-	        } 
-	        },
-	        { src: 'plugin/notes/notes.js', async: true, condition: function () {
-	        	return !!document.body.classList;
-	        } 
-	        }
-		// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-	    ]
-	});
-</script>
 
 </body>
 </html>

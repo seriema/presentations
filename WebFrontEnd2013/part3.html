@@ -39,244 +39,64 @@
 <!-- Any section element inside of this container is displayed as a slide -->
 <div class="slides">
 <section data-state="blackout">
-    <h1>UX Camp</h1>
-
-    <h1>Web Frontend Dev</h1>
-
-    <p>Part 3 of 4: From the Trenches</p>
-</section>
-
-<section>
 	<section>
-		<h2>Performance</h2>
+		<h1>UX Camp</h1>
 
-		<div>
-			<br>
-		</div>
-		<div>Perceived performance
-		</div>
-		<div>
-			<br>
-		</div>
-		<div>
-			<div style="">Optimize caching</div>
-			<div style="">
-				<br>
-			</div>
-			<div style="">Minimize round-trip times</div>
-			<div style="">
-				<br>
-			</div>
-			<div style="">Minimize request overhead</div>
-			<div style="">
-				<br>
-			</div>
-			<div style="">Minimize payload size</div>
-			<div style="">
-				<br>
-			</div>
-			<div style="">Optimize browser rendering</div>
-		</div>
+		<h1>Web Frontend Dev</h1>
+
+		<p>Part 3 of 4: From the Trenches</p>
+		<br>
+		<p><em>Presented on 15 March 2013.</em></p>
+		<br>
+		<p><em>Press down for video or right for slides.</em></p>
 	</section>
 	<section>
-		<h2>Performance tools</h2>
-		<br>
-		<p><a href="https://developers.google.com/speed/pagespeed/">Google Page Speed</a></p>
-		<p><a href="http://developer.yahoo.com/yslow/">Yahoo! YSlow</a></p>
-		<br>
-		<p><a href="http://www.smushit.com/ysmush.it/">Smush.it</a></p>
-		<br>
-		<p>Network console</p>
-		<p>Profiler</p>
+		<h3>Presented by</h3>
+		<p><a href="http://twitter.com/seriemajp">John-Philip Johansson</a> at <a href="http://avanade.com">Avanade</a></p>
+		<video controls preload="none" width="500px">
+			<source src="vid/part3-480p.mp4" type="video/mp4" media="all and (max-width:480px)" />
+			<source src="vid/part3-720p.mp4" type='video/mp4' />
+			<source src="vid/part3-480p.ogv" type='video/ogg; codecs="theora, vorbis"' media="all and (max-width:480px)" />
+			<source src="vid/part3-720p.ogv" type='video/ogg; codecs="theora, vorbis"' />
+		</video>
+		<p><em>Tip: Watch in fullscreen. It's in HD.</em></p>
+		<p><small>Download: <a href="vid/part3-720p.mp4">MP4 720p</a>, <a href="vid/part3-480p.mp4">MP4 480p</a>, <a href="vid/part3-720p.ogv">OGG 720p</a>, or <a href="vid/part3-480p.ogv">OGG 480p</a>.</small></p>
 	</section>
 </section>
 
-<section>
-	<section>
-		<h2>Effective JS</h2>
-		<br>
-		<p>Know which version of JS you use ("use strict")</p>
-		<p>Implicit coercions</p>
-		<p>toString() and valueOf(), but "object " + myObj gives "object valueOfMyObj"</p>
-	</section>
-</section>
-
-<section>
-	<section>
-		<h2>Implicit coercions</h2>
-		<br>
-<pre><code class="javascript">isNaN('foo') === true
-isNaN(undefined) === true
-isNaN({}) === true
-isNaN({valueOf: 'foo'}) === true
-x !== x // only true if NaN</code></pre>
-	</section>
-
-	<section>
-		<h3>truthy and falsy</h3>
-		<br>
-<pre><code class="javascript">function point(x, y) {
-  if (!x)
-    x = 320;
-  if (!y)
-    y = 240;
-
-  return { x: x, y: y };
-}
-
-point(0, 0) === { x: 320, y: 240 };
-</code></pre>
-
-<pre><code class="javascript">function point(x, y) {
-  if (typeof x === "undefined")
-    x = 320;
-  if (typeof y === "undefined")
-    y = 240;
-
-  return { x: x, y: y };
-}
-
-point(0, 0) === { x: 320, y: 240 };
-</code></pre>
-	</section>
-</section>
-
-<section>
-	<section>
-		<h2>Class</h2>
-
-<pre><code class="javascript">function box() {
-  var val = undefined;
-  return {
-    set: function(newVal) { val = newVal; },
-    get: function() { return val; },
-  };
-}
-
-var b = box();
-b.set(98.6);
-b.get(); // 98.6
-</code></pre>
-
-<pre><code class="javascript">var Tree = function(x) {
-  this.children = [];
-  this.value = x;
-}
-
-Tree.prototype = {
-  addChild: function(x) {
-    this.children.push(x);
-  }
-
-  printChildren: function() {
-    this.children.forEach(function(child) {
-      console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
-    };
-  }
-};
-</code></pre>
-
-<pre><code class="javascript">Tree.prototype.printChildren = function() {
-  this.children.forEach(function(child) {
-    console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
-  };
-};
-</code></pre>
-
-<pre><code class="javascript">Tree.prototype.printChildren = function() {
-  var self = this;
-  this.children.forEach(function(child) {
-    console.log('Child ' + child.value, 'Parent ' + self.value);
-  };
-};
-</code></pre>
-	</section>
-
-	<section>
-		<h3>Calling superclass constructor</h3>
-
-<pre><code class="javascript">function Actor(x, y) {
-  this.x = x;
-  this.y = y;
-}
-
-function SpaceShip(x, y) {
-  Actor.call(this, x, y);
-  this.points = 0;
-}
-SpaceShip.prototype = Object.create(Actor.prototype);
-</code></pre>
-	</section>
-</section>
-
-<section>
-	<section>
-		<h2>Arguments</h2>
-		<br>
-		<p>Undefined arguments</p>
-		<br>
-		<p>Array</p>
-		<br>
-		<p>Arguments object</p>
-		<br>
-		<p>Options</p>
-	</section>
-
-	<section>
-		<h3>Undefined arguments</h3>
-		<br>
-<pre><code class="javascript">var sum = sum(1, 2, 3, 4, 5);
-</code></pre>
-	</section>
-
-	<section>
-		<h3>Array</h3>
-		<br>
-<pre><code class="javascript">send(url, [1, 2, 3, 4, 5]);
-</code></pre>
-	</section>
-
-	<section>
-		<h3>Arguments object</h3>
-		<br>
-<pre><code class="javascript">send( { url: url, data: [1, 2, 3, 4, 5] } );
-</code></pre>
-	</section>
-
-	<section>
-		<h3>Options</h3>
-		<br>
-<pre><code class="javascript">// Seen something like this?
-var alert = new Alert("Error", message, "blue",
-                      "white", "black", "error", true);</code></pre>
-
-<pre><code class="javascript">// Prefer this instead
-var options = { titleColor: "blue", bgColor: "white",
-                textColor: "black", icon: "error", modal: true }
-var alert = new Alert("Error", message, options);
-</code></pre>
-
-<pre><code class="javascript">// How to do it
-function Alert(title, message, opts) {
-  // ...
-  var defaultOpts = { ... };
-  opts = $.extend(defaultOpts, opts || {});
-  this = $.extend(this, opts);
-}
-</code></pre>
-	</section>
-</section>
-
-<section>
-	<h2>Don't overdo monkey-patching</h2>
+<section data-state="blackout">
+	<h2>Agenda</h2>
 	<br>
-<pre><code class="javascript">Array.prototype.split = function(i) {
-  return [this.slice(0, i), this.slice(i)];
-};</code></pre>
-	<p>That seems useful, but what if everyone did this?</p>
+	<p>Rounding up the basics</p>
+	<br>
+	<p>Design patterns in JavaScript</p>
+	<br>
+	<p>Somethings from a project</p>
+	<br>
+	<p>Tips &amp; tricks</p>
+</section>
+
+<section data-state="blackout">
+	<h2>Rounding up the basics</h2>
+	<br>
+	<p>Some extra stuff we didn't cover so far</p>
 </section>
 
 <section>
+	<section>
+		<h2>JavaScript functions</h2>
+		<br>
+		<p>IIFE</p>
+		<br>
+		<p>Function.bind()</p>
+		<br>
+		<p>Curry functions</p>
+		<br>
+		<p>Safer constructors</p>
+		<br>
+		<p>Even safer constructors</p>
+	</section>
+
 	<section>
 		<h2>IIFE</h2>
 		<p>Immediately Invoked Function Expressions</p>
@@ -285,83 +105,6 @@ function Alert(title, message, opts) {
   // do secret stuff
 })();
 </code></pre>
-	</section>
-
-	<section>
-		<h3>Solving a common closure issue</h3>
-		<br>
-<pre><code class="javascript">function wrapElements(a) {
-  var result = [], i = a.length;
-  while (--i)
-    result[i] = function() { return a[i]; };
-
-  return result;
-}
-
-var wrapped = wrapElements([10, 20, 30, 40, 50]);
-wrapped[0](); // ?
-</code></pre>
-
-<pre><code class="javascript">function wrapElements(a) {
-  var result = [], i = a.length;
-  while (--i) {
-    (function(j) {
-      result[i] = function() { return a[j]; };
-    })(i);
-  }
-
-  return result;
-}
-</code></pre>
-	</section>
-</section>
-
-<section>
-	<h2>Named function expression</h2>
-	<br>
-	<p>Which one to choose?</p>
-<pre><code class="javascript">function double(x) { ... }
-// or
-var double = function(x) { ... };
-// or even
-var double = function _double(x) { ... };</code></pre>
-	<p>The name can be used for recursion</p>
-	<p>and instead of <em>anonymous function</em> in callstack</p>
-<pre><code class="javascript">var f = function find(tree, key) {
-  // ...
-  return find(...);
-};</code></pre>
-</section>
-
-<section>
-	<h2>Functions in block scope</h2>
-	<br>
-	<p>But block scope didn't exist?..</p>
-<pre><code class="javascript">function f() { return "global"; }
-function test(x) {
-  var result = [];
-  if (x) {
-    function f() { return "local"; } // block-local
-    result.push(f());
-  }
-
-  result.push(f());
-  return result;
-}
-test(true); // ?
-test(false); // ?</code></pre>
-<p>Depends on the if statement is run</p>
-</section>
-
-<section>
-	<section>
-		<h2>Functions</h2>
-		<br>
-		<p>Array.map() in ES5, otherwise use jQuery</p>
-		<p>Variadic functions (multiple arguments, use array or 'arguments')</p>
-		<p>Function.bind(), remember apply() and call()?</p>
-		<p>Curry</p>
-		<p>Safer constructors</p>
 	</section>
 
 	<section>
@@ -424,15 +167,76 @@ var user2 = User('def', '456'); // now also works!</code></pre>
 </section>
 
 <section>
-	<h2>tips on semantics</h2>
+	<section>
+		<h2>JavaScript arguments</h2>
+		<br>
+		<p>Undefined arguments</p>
+		<br>
+		<p>Array</p>
+		<br>
+		<p>Arguments object</p>
+		<br>
+		<p>Options</p>
+	</section>
+
+	<section>
+		<h3>Undefined arguments</h3>
+		<br>
+<pre><code class="javascript">var sum = sum(1, 2, 3, 4, 5);
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Array</h3>
+		<br>
+<pre><code class="javascript">send(url, [1, 2, 3, 4, 5]);
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Arguments object</h3>
+		<br>
+<pre><code class="javascript">send( { url: url, data: [1, 2, 3, 4, 5] } );
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Options</h3>
+		<br>
+<pre><code class="javascript">// Seen something like this?
+var alert = new Alert("Error", message, "blue",
+                      "white", "black", "error", true);</code></pre>
+
+<pre><code class="javascript">// Prefer this instead
+var options = { titleColor: "blue", bgColor: "white",
+                textColor: "black", icon: "error", modal: true }
+var alert = new Alert("Error", message, options);
+</code></pre>
+
+<pre><code class="javascript">// How to do it
+function Alert(title, message, opts) {
+  // ...
+  var defaultOpts = { ... };
+  opts = $.extend(defaultOpts, opts || {});
+  this = $.extend(this, opts);
+}
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<h2>HTML semantics</h2>
 	<br>
     <pre><code class="html">&lt;article&gt;For what you would syndicate&lt;/article&gt;
 &lt;section&gt;For things that belong together&lt;/section&gt;
-&lt;div&gt;Otherwise&lt;/div&gt;<br><br>&lt;header&gt;At the start of areas&lt;/header&gt;
-&lt;footer&gt;at the end.&lt;/footer&gt;
-	
-nav och aside
-	</code></pre>
+&lt;div&gt;Otherwise&lt;/div&gt;
+
+&lt;aside&gt;For related side content&lt;/aside&gt;
+&lt;nav&gt;For pure navigation links&lt;/nav&gt;
+
+&lt;header&gt;At the start of areas&lt;/header&gt;
+&lt;footer&gt;At the end&lt;/footer&gt;
+</code></pre>
 	<br>
 	<div>
 		Doesn't work in IE8 and below, but you can use <a href="https://github.com/aFarkas/html5shiv/">html5shiv</a>.
@@ -494,7 +298,7 @@ nav och aside
                 Media object</a>
         </div>
         <div>
-            <img src="http://i.imgur.com/OjRqjgo.png">
+            <img src="http://i.imgur.com/OjRqjgo.png" alt="screenshot of the media object" />
             <br>
         </div>
 <pre><code class="css">.media { margin: 10px; }
@@ -512,7 +316,7 @@ nav och aside
             <br>
         <div>Blocks and Elements</div>
         <div>
-            <img src="http://i.imgur.com/YygZGus.png">
+            <img src="http://i.imgur.com/YygZGus.png" alt="Illustration of blocks and elements" />
             <br>
         </div>
         <div>
@@ -520,12 +324,11 @@ nav och aside
         </div>
         <div>Modifier</div>
         <div>
-            <img src="http://i.imgur.com/FsTZW64.png">
+            <img src="http://i.imgur.com/FsTZW64.png" alt="Illustration of modifier" />
             <br>
         </div>
-
-
     </section>
+
     <section>
         <h2>CSS Specificity</h2>
 
@@ -558,37 +361,9 @@ article section.main p.intro  /* I GIVE UP! */</code></pre>
 
 </section>
 
-<section>
-	<h2>JS</h2>
-	<p>default parameters (som jQuery, if undefined ...)</p>
-	<p>default options object (jQuery.extend)</p>
-	<p>typ av parameter (if string, if function, etc)</p>
-</section>
-
-<section>
-    <h2>Tips</h2>
-
-    <div>
-        <br>
-    </div>
-    <div>
-        <div>Don't do inline styling or JavaScript</div>
-		<br>
-        <div>Find reusable components, break them up in a separate file</div>
-        <div>js/components/article-selection.js</div>
-        <div>less/components/article-selection.less</div>
-        <div>html/components/article-selection.html (kinda)</div>
-		<br>
-        <div>Use or learn from frameworks</div>
-    </div>
-    <div>
-        <br>
-    </div>
-</section>
-
-
 <section data-state="blackout">
 	<h1>Design Patterns</h1>
+	<h1>in JavaScript</h1>
 </section>
 
 <section>
@@ -600,12 +375,6 @@ article section.main p.intro  /* I GIVE UP! */</code></pre>
 		<li>Describes a proven concept</li>
 		<li>Describes a relationship</li>
 	</ul>
-</section>
-
-<section>
-	<h2>Pretend privacy</h2>
-<pre><code class="javascript">var myObj = {};
-myObj._private = 'ssssh';</code></pre>
 </section>
 
 <section>
@@ -755,20 +524,14 @@ $(document).trigger('eventName'); // doesn't matter much what element
 <section>
 	<section>
 		<h2>Facade pattern</h2>
-		<p>Limited abstractions of methods</p>
 		<br>
-		<p>Seen a lot in jQuery</p>
-<pre><code class="javascript">$('.myClass').css('background', 'red');
+		<p>Limited abstractions of methods</p>
+	</section>
+	<section>
+		<h3>Seen a lot in jQuery</h3>
+<pre><code class="javascript">$('.myClass').click(myCallback);
 // same as
-$('.myClass').attr('style', 'background: red');
-</code></pre>
-
-<pre><code class="javascript">jQuery.extend({
-  isArray: Array.isArray || function( obj ) {
-    return jQuery.type(obj) === "array";
-  },
-  // ...
-});
+$('.myClass').on('click', myCallback);
 </code></pre>
 	</section>
 </section>
@@ -776,8 +539,11 @@ $('.myClass').attr('style', 'background: red');
 <section>
 	<section>
 		<h2>Factory pattern</h2>
-		<p>Generic interface for creating objects</p>
 		<br>
+		<p>Generic interface for creating objects</p>
+	</section>
+	<section>
+		<p>Great when serializing</p>
 <pre><code class="javascript">function Car() { ... };
 function Truck() { ... };
 
@@ -794,106 +560,7 @@ VehicleFactory.prototype.createVehicle = function ( options ) {
 	</section>
 </section>
 
-<section>
-	<section>
-		<h2>Cascade / Chaining</h2>
-		<br>
-		<p>Return 'this' instead of 'undefined'</p>
-	</section>
-
-	<section>
-		<h3>Chaining in jQuery</h3>
-		<br>
-		<p>Typical (don't do this)</p>
-<pre><code class="javascript">$('div.main-content').addClass('highlight');
-$('div.main-content').click(onMainContentClick);
-</code></pre>
-
-		<p>At least do this</p>
-		<pre><code class="javascript">var $mainContent = $('div.main-content');
-
-$mainContent.addClass('highlight');
-$mainContent.click(onMainContentClick);</code></pre>
-
-		<p>Preferably use chaining</p>
-		<pre><code class="javascript">var $mainContent = $('div.main-content');
-
-$mainContent.addClass('highlight').click(onMainContentClick);</code></pre>
-	</section>
-
-	<section>
-		<h3>How to do chaining</h3>
-		<br>
-<pre><code class="javascript">// taken from the actual jQuery source
-jQuery.fn.extend({
-  addClass: function( value ) {
-    // ...
-
-    return this;
-  }
-});
-</code></pre>
-	</section>
-</section>
-
-<section>
-	<section>
-		<h2>Promises</h2>
-		<p>AKA deferreds or futures</p>
-		<br>
-		<p>Classical</p>
-<pre><code class="javascript">$.getJSON(url, data, onDone);
-</code></pre>
-		<p>Using promises</p>
-<pre><code class="javascript">$.getJSON(url, data).done(onDone);
-</code></pre>
-		<br>
-		<p>Do your own by calling <a href="http://api.jquery.com/category/deferred-object/">jQuery.Deferred()</a></p>
-	</section>
-</section>
-
-<section>
-	<div>Object.defineProperty( newObject, "someKey", {
-value: "for more control of the property's behavior",
-writable: true,
-enumerable: true,
-configurable: true
-});	</div>
-</section>
-
-<section>
-    <h2>Frameworks</h2>
-    <br>
-    <div>
-        <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>
-    </div>
-    <br>
-    <div>
-        <a href="http://foundation.zurb.com/">Zurb Foundation</a>
-    </div>
-    <br>
-    <div>
-        <a href="http://html5boilerplate.com/">HTML5 Boilerplate</a>
-    </div>
-    <br>
-    <div>
-        <a href="http://www.initializr.com/">Initializr</a>
-    </div>
-</section>
-
-<section>
-	<h2>Do's and don'ts</h2>
-	<br>
-	<p>No inline JavaScript</p>
-	<p>No inlince CSS</p>
-	<p>CSS on top, JS on bottom of the page</p>
-	<p>Considor font-icons</p>
-	<p>Consider image sprites</p>
-	<p>Use a reset.css or normalize.css</p>
-	<p>Optimize your images</p>
-	<p>Pick a coding style and stick with it</p>
-</section>
-
+<!--
 <section>
     <h2>Responsive Web Design</h2>
 
@@ -916,23 +583,10 @@ configurable: true
     </div>
     <div>3-5 Breakpoints</div>
 </section>
-
-<section>
-	<section>
-		<h2>Dev flow</h2>
-
-		<p>console.log and console.dir</p>
-		<p>LiveReload + WebMatrix, or live.js, or WebStorm</p>
-		<p>Chrome console</p>
-		<p>Fiddler</p>
-		<p>Web Essentials and ReSharper for VS</p>
-		<p>Dropbox and bit.ly</p>
-		<p>Codepen / jsFiddle</p>
-	</section>
-</section>
+-->
 
 <section data-state="blackout">
-	<h1>Something from a project</h1>
+	<h1>Somethings from a project</h1>
 </section>
 
 <section>
@@ -1013,15 +667,6 @@ if ( MyLib.debug )
 </section>
 
 <section>
-	<h2>Structures</h2>
-	<br>
-	<p>Separate HTML, CSS, and JS</p>
-	<p>If possible, use the same names</p>
-	<br>
-	<p>Keep URL's out of JS, use data-attributes in HTML if needed</p>
-</section>
-
-<section>
 	<section>
 		<h2>Components</h2>
 	</section>
@@ -1038,16 +683,18 @@ if ( MyLib.debug )
 
 	<section>
 		<h3>Example</h3>
-		<p>Core component</p>
+		<p>Ajax action - tooltip input</p>
 		<br>
-		<p>ajaxSimpleAction!</p>
-	</section>
-
-	<section>
-		<h3>Example</h3>
-		<p>Composite component</p>
+<pre><code class="html">&lt;common:ajaxTooltipInput
+  actionText=&quot;Create New group&quot;
+  inputName=&quot;userGroupName&quot;
+  inputText=&quot;New group name&quot;
+  postUrl=&quot;/api/groups/&quot; /&gt;
+</code></pre>
 		<br>
-		<p>ajaxTooltipConfirm!</p>
+		<img src="/img/component_example_1.PNG" alt="Component example 1" />
+		<img src="/img/component_example_2.PNG" alt="Component example 2" />
+		<img src="/img/component_example_3.PNG" alt="Component example 3" />
 	</section>
 
 	<section>
@@ -1065,6 +712,190 @@ if ( MyLib.debug )
 		<br>
 		<p>The JS warns if needed elements are missing</p>
 		<p>The JS warns if the AJAX isn't as expected</p>
+		<br>
+		<img src="/img/component_example_4.png" alt="Components - example of self check" />
+	</section>
+
+</section>
+
+<section data-state="blackout">
+	<h1>Tips &amp; tricks</h1>
+</section>
+
+<section>
+	<section>
+		<h2>Performance</h2>
+
+		<div>
+			<br>
+		</div>
+		<div>Perceived performance
+		</div>
+		<div>
+			<br>
+		</div>
+		<div>
+			<div style="">Optimize caching</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize round-trip times</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize request overhead</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Minimize payload size</div>
+			<div style="">
+				<br>
+			</div>
+			<div style="">Optimize browser rendering</div>
+		</div>
+	</section>
+	<section>
+		<h2>Performance tools</h2>
+		<br>
+		<p>Test your page with:</p>
+		<p><a href="https://developers.google.com/speed/pagespeed/">Google Page Speed</a></p>
+		<p><a href="http://developer.yahoo.com/yslow/">Yahoo! YSlow</a></p>
+		<p><a href="http://www.webpagetest.org/">Webtestpage</a></p>
+		<br>
+		<p>Compress (lossless!) your images with <a href="http://www.smushit.com/ysmush.it/">Smush.it</a></p>
+		<br>
+		<p>Use the Network console and Profiler in Chrome dev tools</p>
+	</section>
+</section>
+
+<section>
+	<h2>Pretend privacy</h2>
+<pre><code class="javascript">var myObj = {};
+myObj._private = 'ssssh';</code></pre>
+</section>
+
+<section>
+	<section>
+		<h2>Cascade / Chaining</h2>
+		<br>
+		<p>Return 'this' instead of 'undefined'</p>
+	</section>
+
+	<section>
+		<h3>Chaining in jQuery</h3>
+		<br>
+		<p>Typical (don't do this)</p>
+<pre><code class="javascript">$('div.main-content').addClass('highlight');
+$('div.main-content').click(onMainContentClick);
+</code></pre>
+
+		<p>At least do this</p>
+		<pre><code class="javascript">var $mainContent = $('div.main-content');
+
+$mainContent.addClass('highlight');
+$mainContent.click(onMainContentClick);</code></pre>
+
+		<p>Preferably use chaining</p>
+		<pre><code class="javascript">var $mainContent = $('div.main-content');
+
+$mainContent.addClass('highlight').click(onMainContentClick);</code></pre>
+	</section>
+
+	<section>
+		<h3>How to do chaining</h3>
+		<br>
+<pre><code class="javascript">// taken from the actual jQuery source
+jQuery.fn.extend({
+  addClass: function( value ) {
+    // ...
+
+    return this;
+  }
+});
+</code></pre>
+	</section>
+</section>
+
+<section>
+	<section>
+		<h2>Promises</h2>
+		<p>AKA deferred or future</p>
+		<br>
+		<p>Classical</p>
+<pre><code class="javascript">$.getJSON(url, data, onDone);
+</code></pre>
+		<p>Using promises</p>
+<pre><code class="javascript">$.getJSON(url, data).done(onDone);
+</code></pre>
+		<br>
+		<p>Do your own by calling <a href="http://api.jquery.com/category/deferred-object/">jQuery.Deferred()</a></p>
+	</section>
+</section>
+
+<section>
+	<h2>Do's and don'ts</h2>
+	<br>
+	<p>No inline JavaScript</p>
+	<p>No inlince CSS</p>
+	<p>CSS on top, JS on bottom of the page</p>
+	<p>Consider font-icons</p>
+	<p>Consider image sprites</p>
+	<p>Use a reset.css or normalize.css</p>
+	<p>Optimize your images</p>
+	<p>Pick a coding style and stick with it</p>
+	<p>Keep URL's out of JS, use data-attributes in HTML if needed</p>
+</section>
+
+<section>
+	<h2>A tip on responsive web design</h2>
+	<br>
+	<img src="/img/responsive_web_design.png" alt="Illustration of responsive web design" />
+	<br>
+	<p>Design a handful of reflows, and stick to them.</p>
+</section>
+
+<section>
+	<section>
+		<h2>Dev flow</h2>
+		<br>
+		<p>The browser console</p>
+		<br>
+		<p>Fast feedback</p>
+		<br>
+		<p>Easy online checks</p>
+	</section>
+
+	<section>
+		<h3>The browser console</h3>
+		<br>
+		<p>&lt;3 it</p>
+		<br>
+		<p>Not just console.log, use .dir and .error too</p>
+		<br>
+		<p>Quickly test your scripts</p>
+		<br>
+		<p>Verify JS behaviour</p>
+	</section>
+
+	<section>
+		<h3>Fast feedback</h3>
+		<br>
+		<p>Your changes should be instantly visible</p>
+		<br>
+		<p>Tools:</p>
+		<ul>
+			<li><p>Reloaders - <a href="http://livereload.com/">LiveReload</a> or <a href="http://livejs.com/">Live.js</a></p></li>
+			<li><p>Simple servers - <a href="http://www.microsoft.com/web/webmatrix/">WebMatrix</a> (free) or <a href="http://www.jetbrains.com/webstorm/">WebStorm</a></p></li>
+			<li><p>Network - <a href="http://www.fiddler2.com/">Fiddler2</a></p></li>
+			<li><p>Change variables - <a href="https://code.google.com/p/dat-gui/">Dat GUI</a></p></li>
+		</ul>
+	</section>
+
+	<section>
+		<h3>Easy online checks</h3>
+		<br>
+		<p>Simple hosting - <a href="http://db.tt/e5dx1Wl">Dropbox</a> with <a href="https://bitly.com/">bit.ly</a></p>
+		<p>Online editors - <a href="http://codepen.io/">CodePen</a> or <a href="http://jsfiddle.net/">jsFiddle</a></p>
 	</section>
 
 </section>
@@ -1075,30 +906,78 @@ if ( MyLib.debug )
 
         <br>
 		<p>Some videos,</p>
-		<p>a few articles,</p>
-        <p>and lots of free libraries</p>
+		<p>a few frameworks,</p>
+        <p>and a bunch of books</p>
     </section>
 	
 	<section>
 		<h3>JavaScript, wat?</h3>
-		<p>Hilarious 4min presentation of quirkiness!</p>
+		<p>Hilarious 4min presentation of JS uirkiness!</p>
 		<br>
 		<p>View it <a href="https://www.destroyallsoftware.com/talks/wat">here</a>.</p>
 	</section>
 
-<section>
-    <h3>50 performance tricks</h3>
+	<section>
+		<h3>50 performance tricks</h3>
 
-    <h3>to make your HTML5 apps and sites faster</h3>
+		<h3>to make your HTML5 apps and sites faster</h3>
 
-    <iframe src="http://channel9.msdn.com/Events/Build/2012/3-132/player?w=960&amp;h=540"
-            style="height: 540.0px;width: 960.0px;">&amp;amp;amp;nbsp;
-    </iframe>
+		<iframe src="http://channel9.msdn.com/Events/Build/2012/3-132/player?w=960&amp;h=540"
+				style="height: 540.0px;width: 960.0px;" allowfullscreen>&amp;amp;amp;nbsp;
+		</iframe>
+
+		<p><a href="http://paulirish.com/2011/dom-html5-css3-performance/">Original</a></p>
+	</section>
+
+	<section>
+		<h3>DOM, HTML5, &amp; CSS3 Performance</h3>
+
+		<iframe width="420" height="315" src="http://www.youtube.com/embed/q_O9_C2ZjoA" frameborder="0" allowfullscreen></iframe>
+	</section>
+
+	<section>
+		<h3>Web Application Development Workflow</h3>
+
+		<iframe width="560" height="315" src="http://www.youtube.com/embed/vDbbz-BdyYc" frameborder="0" allowfullscreen></iframe>
+	</section>
+
+	<section>
+		<h3>How Web Browsers Work</h3>
+
+		<iframe src="http://player.vimeo.com/video/22158462" width="500" height="275" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+		<p><a href="http://www.dayofjs.com/videos/22158462/web-browsers_alex-russel">Original</a></p>
+	</section>
+
+	<section>
+		<h3>Frameworks</h3>
+		<br>
+		<p><a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a></p>
+		<br>
+		<p><a href="http://foundation.zurb.com/">Zurb Foundation</a></p>
+		<br>
+		<p><a href="http://html5boilerplate.com/">HTML5 Boilerplate</a></p>
+		<br>
+		<p><a href="http://www.initializr.com/">Initializr</a></p>
+	</section>
+
+	<section>
+		<h3>Books</h3>
+		<a href="http://shop.smacss.com/"><img style="height: 250px;" src="http://cdn.shopify.com/s/files/1/0000/0042/products/book-cover_1_medium.png?463" alt="book cover" /></a>
+		<a href="http://www.goodreads.com/book/show/7008656-high-performance-javascript"><img style="height: 250px;" src="http://d.gr-assets.com/books/1328834985l/7008656.jpg" alt="book cover" /></a>
+		<a href="http://www.goodreads.com/book/show/14289134-learning-javascript-design-patterns"><img style="height: 250px;" src="http://d.gr-assets.com/books/1344734794l/14289134.jpg" alt="book cover" /></a>
+		<a href="http://www.goodreads.com/book/show/13705402-effective-javascript"><img style="height: 250px;" src="http://d.gr-assets.com/books/1355824235l/13705402.jpg" alt="book cover" /></a>
+		<a href="http://www.goodreads.com/book/show/9815906-responsive-web-design"><img style="height: 250px;" src="http://d.gr-assets.com/books/1291401033l/9815906.jpg" alt="book cover" /></a>
+	</section>
+<!--
+	<section>
+		<h3>Articles</h3>
+		<p><a href="http://www.infinite-scroll.com/">Infinite scroll sample</a></p>
+		<p></p>
+	</section>
+-->
 </section>
 
-</section>
-
-<section>
+<section data-state="blackout">
     <h2>the End?</h2>
     <br>
     <p>Questions?</p>
@@ -1112,45 +991,8 @@ if ( MyLib.debug )
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.min.js"></script>
+<script src="js/reveal.init.js"></script>
 
-<script>
-
-    // Full list of configuration options available here:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        controls:true,
-        progress:true,
-        history:true,
-        center:true,
-
-        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-        // Optional libraries used to extend on reveal.js
-        dependencies:[
-            { src:'lib/js/classList.js', condition:function () {
-                return !document.body.classList;
-            } },
-            { src:'plugin/markdown/showdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/markdown/markdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
-                hljs.initHighlightingOnLoad();
-            } },
-            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } },
-            { src:'plugin/notes/notes.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } }
-            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-    });
-
-</script>
 
 </body>
 </html>

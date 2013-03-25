@@ -59,6 +59,7 @@
 			<source src="vid/part2-720p.ogv" type='video/ogg; codecs="theora, vorbis"' />
 		</video>
 		<p><em>Tip: Watch in fullscreen. It's in HD.</em></p>
+		<p><small>Download: <a href="vid/part2-720p.mp4">MP4 720p</a>, <a href="vid/part2-480p.mp4">MP4 480p</a>, <a href="vid/part2-720p.ogv">OGG 720p</a>, or <a href="vid/part2-480p.ogv">OGG 480p</a>.</small></p>
 	</section>
 </section>
 
@@ -505,6 +506,162 @@ document.getElementById('myDiv').onclick = function() {
 	</section>
 </section>
 
+<!--
+	
+<section>
+	<section>
+		<h2>Class</h2>
+
+<pre><code class="javascript">function box() {
+  var val = undefined;
+  return {
+    set: function(newVal) { val = newVal; },
+    get: function() { return val; },
+  };
+}
+
+var b = box();
+b.set(98.6);
+b.get(); // 98.6
+</code></pre>
+
+<pre><code class="javascript">var Tree = function(x) {
+  this.children = [];
+  this.value = x;
+}
+
+Tree.prototype = {
+  addChild: function(x) {
+    this.children.push(x);
+  }
+
+  printChildren: function() {
+    this.children.forEach(function(child) {
+      console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
+    };
+  }
+};
+</code></pre>
+
+<pre><code class="javascript">Tree.prototype.printChildren = function() {
+  this.children.forEach(function(child) {
+    console.log('Child ' + child.value, 'Parent ' + this.value); // wrong this
+  };
+};
+</code></pre>
+
+<pre><code class="javascript">Tree.prototype.printChildren = function() {
+  var self = this;
+  this.children.forEach(function(child) {
+    console.log('Child ' + child.value, 'Parent ' + self.value);
+  };
+};
+</code></pre>
+	</section>
+
+	<section>
+		<h3>Calling superclass constructor</h3>
+
+<pre><code class="javascript">function Actor(x, y) {
+  this.x = x;
+  this.y = y;
+}
+
+function SpaceShip(x, y) {
+  Actor.call(this, x, y);
+  this.points = 0;
+}
+SpaceShip.prototype = Object.create(Actor.prototype);
+</code></pre>
+	</section>
+</section>
+
+
+<section>
+	<h2>Don't overdo monkey-patching</h2>
+	<br>
+<pre><code class="javascript">Array.prototype.split = function(i) {
+  return [this.slice(0, i), this.slice(i)];
+};</code></pre>
+	<p>That seems useful, but what if everyone did this?</p>
+</section>
+
+<section>
+	<h2>Named function expression</h2>
+	<br>
+	<p>Which one to choose?</p>
+<pre><code class="javascript">function double(x) { ... }
+// or
+var double = function(x) { ... };
+// or even
+var double = function _double(x) { ... };</code></pre>
+	<p>The name can be used for recursion</p>
+	<p>and instead of <em>anonymous function</em> in callstack</p>
+<pre><code class="javascript">var f = function find(tree, key) {
+  // ...
+  return find(...);
+};</code></pre>
+</section>
+
+<section>
+	<h2>Functions in block scope</h2>
+	<br>
+	<p>But block scope didn't exist?..</p>
+<pre><code class="javascript">function f() { return "global"; }
+function test(x) {
+  var result = [];
+  if (x) {
+    function f() { return "local"; } // block-local
+    result.push(f());
+  }
+
+  result.push(f());
+  return result;
+}
+test(true); // ?
+test(false); // ?</code></pre>
+<p>Depends on the if statement is run</p>
+</section>
+
+	<section>
+		<h3>Solving a common closure issue</h3>
+		<br>
+<pre><code class="javascript">function wrapElements(a) {
+  var result = [], i = a.length;
+  while (--i)
+    result[i] = function() { return a[i]; };
+
+  return result;
+}
+
+var wrapped = wrapElements([10, 20, 30, 40, 50]);
+wrapped[0](); // ?
+</code></pre>
+
+<pre><code class="javascript">function wrapElements(a) {
+  var result = [], i = a.length;
+  while (--i) {
+    (function(j) {
+      result[i] = function() { return a[j]; };
+    })(i);
+  }
+
+  return result;
+}
+</code></pre>
+	</section>
+
+<section>
+	<div>Object.defineProperty( newObject, "someKey", {
+value: "for more control of the property's behavior",
+writable: true,
+enumerable: true,
+configurable: true
+});	</div>
+</section>
+
+-->
+
 <section>
 	<section>
 		<h2>Inheritance</h2>
@@ -948,6 +1105,44 @@ $.each(myCar, function(part) {
 });</code></pre>
 	</section>
 
+	<section>
+		<h2>Implicit coercions</h2>
+		<br>
+<pre><code class="javascript">isNaN('foo') === true
+isNaN(undefined) === true
+isNaN({}) === true
+isNaN({valueOf: 'foo'}) === true
+x !== x // only true if NaN</code></pre>
+	</section>
+
+	<section>
+		<h3>truthy and falsy</h3>
+		<br>
+<pre><code class="javascript">function point(x, y) {
+  if (!x)
+    x = 320;
+  if (!y)
+    y = 240;
+
+  return { x: x, y: y };
+}
+
+point(0, 0) === { x: 320, y: 240 };
+</code></pre>
+
+<pre><code class="javascript">function point(x, y) {
+  if (typeof x === "undefined")
+    x = 320;
+  if (typeof y === "undefined")
+    y = 240;
+
+  return { x: x, y: y };
+}
+
+point(0, 0) === { x: 320, y: 240 };
+</code></pre>
+	</section>
+
 </section>
 
 <section>
@@ -1078,45 +1273,8 @@ $.each(myCar, function(part) {
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.min.js"></script>
+<script src="js/reveal.init.js"></script>
 
-<script>
-
-    // Full list of configuration options available here:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        controls:true,
-        progress:true,
-        history:true,
-        center:true,
-
-        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-        // Optional libraries used to extend on reveal.js
-        dependencies:[
-            { src:'lib/js/classList.js', condition:function () {
-                return !document.body.classList;
-            } },
-            { src:'plugin/markdown/showdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/markdown/markdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
-                hljs.initHighlightingOnLoad();
-            } },
-            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } },
-            { src:'plugin/notes/notes.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } }
-            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-    });
-
-</script>
 
 </body>
 </html>

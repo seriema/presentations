@@ -33,7 +33,6 @@
 </head>
 
 <body>
-
 <div class="reveal">
 
 <!-- Any section element inside of this container is displayed as a slide -->
@@ -41,17 +40,20 @@
 	<section data-state="blackout">
 		<h1>Web Frontend Dev</h1>
 		<br>
-		<p>These sessions are given during March 2013 to train our developers and deliver better web front-ends to our clients.</p>
+		<p>These sessions were given during March 2013 to train our developers and deliver better web front-ends to our clients.</p>
 		<br>
 		<div><ul style="list-style: none;">
 			<li>0. <a href="part0.html">Intro</a></li>
 			<li>1. <a href="part1.html">The Foundation</a> (<a href="part1.html#/0/1">video</a>)</li>
 			<li>2. <a href="part2.html">JavaScript</a> (<a href="part2.html#/0/1">video</a>)</li>
-			<li>3. <a href="part3.html">From the Trenches</a> to be held 15 March</li>
-			<li>4. <a href="part4.html">SharePoint</a> to be held 22 March</li>
+			<li>3. <a href="part3.html">From the Trenches</a> (<a href="part3.html#/0/1">video</a>)</li>
+			<li>4. SharePoint (sorry, no video or slides available)</li>
 		</ul></div>
 		<br>
 		<p><em>By <a href="http://twitter.com/seriemajp">John-Philip Johansson</a> at <a href="http://avanade.com">Avanade</a>.</em></p>
+		<p>
+			<small>View this presentation on <a href="https://bit.ly/webfrontend">bit.ly/webfrontend</a>, or fork it at <a href="https://github.com/seriema/presentations/tree/master/WebFrontEnd2013">GitHub</a></small>
+		</p>
 	</section>
 </div>
 
@@ -60,45 +62,7 @@
 
 <script src="lib/js/head.min.js"></script>
 <script src="js/reveal.min.js"></script>
-
-<script>
-
-    // Full list of configuration options available here:
-    // https://github.com/hakimel/reveal.js#configuration
-    Reveal.initialize({
-        controls:true,
-        progress:true,
-        history:true,
-        center:true,
-
-        theme:Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition:Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
-
-        // Optional libraries used to extend on reveal.js
-        dependencies:[
-            { src:'lib/js/classList.js', condition:function () {
-                return !document.body.classList;
-            } },
-            { src:'plugin/markdown/showdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/markdown/markdown.js', condition:function () {
-                return !!document.querySelector('[data-markdown]');
-            } },
-            { src:'plugin/highlight/highlight.js', async:true, callback:function () {
-                hljs.initHighlightingOnLoad();
-            } },
-            { src:'plugin/zoom-js/zoom.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } },
-            { src:'plugin/notes/notes.js', async:true, condition:function () {
-                return !!document.body.classList;
-            } }
-            // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-        ]
-    });
-
-</script>
+<script src="js/reveal.init.js"></script>
 
 </body>
 </html>
